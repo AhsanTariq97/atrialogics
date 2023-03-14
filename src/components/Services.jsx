@@ -3,7 +3,7 @@ import ServiceCard from '../components/constants/ServiceCard'
 
 const Services = () => {
   return (
-    <div className='flex flex-col justify-between items-center space-y-16 py-8 lg:py-16'>
+    <div id='services' className='flex flex-col justify-between items-center space-y-16 py-8 lg:py-16'>
         <h1 className='text-3xl font-bold tracking-wide'>Our Services</h1>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-16'>
             <ServiceCard image='/assets/web.svg' heading='Web Apps' text='Expert Full Stack Application Development using ReactJS, NodeJS, and various databases (MongoDB, Postgres, MySQL, Firebase, GraphQL)' />

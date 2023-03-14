@@ -4,7 +4,7 @@ import TeamCard from './constants/TeamCard'
 
 const Team = () => {
   return (
-    <div className='flex flex-col justify-between items-center space-y-4 px-8 py-4'>
+    <div id='team' className='flex flex-col justify-between items-center space-y-4 px-8 py-4'>
         <h1 className='text-3xl font-bold tracking-wide'>Meet our team</h1>
         <p className='text-sm font-normal text-[#6E7477] text-center max-w-2xl tracking-wide'>Our organization boasts a team of highly skilled developers, designers, and team leads who strive to maintain the highest standards of excellence in our systems.</p>
         <div className='flex flex-col justify-between items-center space-y-8 py-8 md:flex-row md:space-y-0 md:space-x-24 lg:space-x-48'>

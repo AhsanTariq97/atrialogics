@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 const Contact = () => {
   return (
-    <div className='flex flex-col justify-between items-center lg:flex-row lg:items-start py-16 px-8'>
+    <div id='contact' className='flex flex-col justify-between items-center lg:flex-row lg:items-start py-16 px-8'>
         <div className='flex flex-col justify-between items-center space-y-8 max-w-md lg:mt-16 lg:items-start lg:space-y-16'>
             <h1 className='text-3xl font-bold tracking-wide'>Contact Us</h1>
             <ContactDetails textColor='text-[#6E7477]' iconColor='#1F3A6E' />

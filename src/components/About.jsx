@@ -4,7 +4,7 @@ import Button from './constants/Button'
 
 const About = () => {
   return (
-    <div className='flex flex-col lg:flex-row justify-between items-center px-8 py-32 space-y-24 lg:space-y-0 lg:space-x-16'>
+    <div id='about' className='flex flex-col lg:flex-row justify-between items-center px-8 py-32 space-y-24 lg:space-y-0 lg:space-x-16'>
         <div className='relative max-w-md lg:max-w-sm'>
             <Image className='rounded-tl-[100px] rounded-br-[100px] sm:rounded-tl-[150px] sm:rounded-br-[150px]' src='/assets/about-us.jpg' width={448} height={400} />
             <div>

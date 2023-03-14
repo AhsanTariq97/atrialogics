@@ -105,29 +105,29 @@ const BlogPage = ({ headings, processedContent }) => {
         <div className='w-full max-w-screen-xl'>
             <div className='relative flex flex-row justify-between items-start'>
               <div ref={myContentRef} className={`h-tag-style text-left ${fixSidebar || fixSidebarBottom ? 'md:pr-[300px]' : ''}`}>
-                <div dangerouslySetInnerHTML={{ __html: processedContent }} />
+                <div className='pr-8' dangerouslySetInnerHTML={{ __html: processedContent }} />
               </div>
 
               <div ref={mySidebarRef} className={`${fixSidebar && !fixSidebarBottom ? 'fix-large-screen fixed top-[120px] right-8 xl:transform xl:translate-x-1/2 min-w-[300px] max-w-[300px]' : 'min-w-[300px] max-w-[300px]'}
                                                   ${fixSidebar && fixSidebarBottom ? 'absolute -bottom-[1px] right-0 min-w-[300px] max-w-[300px]' : 'min-w-[300px] max-w-[300px]'}
                                                   p-2 pl-8 hidden md:flex flex-col justify-between items-start space-y-8`}>
                 <div className='flex flex-col justify-between items-start space-y-4'>
-                  <h3 className='text-base font-bold'>Want to stay on top of all tips and news from Atrialogics?</h3>
-                  <form className='text-sm flex flex-col justify-between items-start space-y-2 w-full' ref={form} onSubmit={handleSubmit((data) => {
+                  <h3 className='text-base font-bold leading-tight'>Want to stay on top of all tips and news from Atrialogics?</h3>
+                  <form className='text-xs flex flex-col justify-between items-start space-y-2 w-full' ref={form} onSubmit={handleSubmit((data) => {
                     console.log(data)
                     updateEmailJS()
                     reset();
                   })}>
                     <label htmlFor="email">Your email*</label>
-                    <input type="email" placeholder='example@email.com' className={`${errors.email ? 'border border-red-600' : '' } w-full border border-black bg-black/5 p-2 rounded-xl outline-none`} {...register('email', {required: 'Required', validate: validateEmail })} />
+                    <input type="email" placeholder='example@email.com' className={`${errors.email ? 'border border-red-600' : '' } w-full border border-slate-400 bg-slate-200 p-2 rounded-xl outline-none`} {...register('email', {required: 'Required', validate: validateEmail })} />
                     <p className='text-red-600'>{errors.email?.message}</p>
-                    <input type="submit" value="Submit" className='text-white bg-[#7187A2] px-4 py-2 rounded-full' />
+                    <input type="submit" value="Submit" className='text-white bg-[#7187A2] px-4 py-2 rounded-full cursor-pointer hover:bg-[#75C3B9]' />
                   </form>
                 </div>
                 
                 {headings.length >= 1 && <div className='border border-black rounded-3xl p-2 w-full max-h-[300px] overflow-auto'>
                   <div className='flex flex-col space-y-4 py-2'>
-                    <h3 className='text-base font-bold'>Table of Contents</h3>
+                    <h3 className='text-lg font-bold'>Table of Contents</h3>
                     <div className='flex flex-col space-y-2'>
                       {Array.from(headings).map((heading, index) => (
                         <Link href={`#section${index + 1}`}>

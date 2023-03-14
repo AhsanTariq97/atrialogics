@@ -48,7 +48,7 @@ export default function Blogs({ post }) {
                 </header>
                 <main className='max-w-screen-xl mx-auto'>
                     <div className='flex flex-col justify-between items-start px-8 pb-16 space-y-16'>
-                        {post.featuredImage ? <Image className='rounded-3xl self-center' src={post.featuredImage.node.sourceUrl} width={800} height={500} /> : <Image src='/assets/ecommerce.svg' className='rounded-3xl self-center' alt='' width={800} height={500} /> }
+                        {post.featuredImage ? <Image className='rounded-3xl self-center h-[80vh]' src={post.featuredImage.node.sourceUrl} width={800} height={500} /> : <Image src='/assets/ecommerce.svg' className='rounded-3xl self-center h-[80vh]' alt='' width={800} height={500} /> }
                         <h1 className='text-4xl font-bold w-full text-left'>{post.title}</h1>
                         <div className='flex justify-start items-center space-x-16'>
                             <h3 className='text-lg font-medium'>{post.author.node.name}</h3>

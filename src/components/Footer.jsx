@@ -14,7 +14,7 @@ const Footer = () => {
 
   return (
     <div className='relative pt-16 pb-8 bg-[#243140] text-[#BDC0C2] w-full'>
-        <div className='slanted-cut text-[#E5E7EB] absolute animate-bounce top-0 left-auto right-8 bg-[#7187A2] p-2 md:-top-4 md:left-1/2 md:right-auto md:px-6 md:py-3 md:bg-[#243140] md:animate-none'>
+        <div className='slanted-cut text-[#E5E7EB] absolute animate-bounce top-0 left-auto right-8 bg-[#7187A2] p-2 md:-top-4 md:left-1/2 md:-translate-x-1/2 md:right-auto md:px-6 md:py-3 md:bg-[#243140] md:animate-none'>
             <button onClick={scrollToTop}><FaArrowUp size={25} className='md:animate-bounce' /></button>
         </div>
         <div className='flex flex-col md:flex-row justify-between items-center px-8 space-y-12 mx-auto pb-32 md:pt-12 md:border-t-2 border-[#E4E6E7] md:space-y-0 md:max-w-4xl lg:max-w-5xl'>

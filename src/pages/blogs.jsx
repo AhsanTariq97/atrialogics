@@ -7,8 +7,7 @@ import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import BlogHomePage from '../components/BlogHomePage';
 import Footer from '../components/Footer';
-
-const POSTS_PER_PAGE = 9;
+import LoadMoreList from '../components/LoadMoreList'
 
 export default function Home({ posts, postsPageInfo }) {
   
@@ -38,13 +37,20 @@ export default function Home({ posts, postsPageInfo }) {
         </header>
         <main className='max-w-screen-xl mx-auto pb-16'>
           <BlogHomePage posts={posts} />
-          {postsPageInfo.pageInfo.hasNextPage && (
+
+
+          {/* <LoadMoreList /> */}
+
+
+          {/* {postsPageInfo.hasNextPage && (
             <div className='flex flex-col justify-center items-center'>
-              {/* <button onClick={handleNextPage}> */}
-                {/* <Link href={`/blogs?afterValue=${afterValue}`}>Next</Link> */}
-              {/* </button> */}
+              <button onClick={handleNextPage}>
+                <Link href={`/blogs?afterValue=${afterValue}`}>Next</Link>
+              </button>
             </div>
-          )}
+          )} */}
+
+
         </main>
         <footer className='w-full'>
           <Footer />
@@ -54,59 +60,90 @@ export default function Home({ posts, postsPageInfo }) {
   );
 }
 
-export async function getStaticProps() {
+// export default function SecondPage() {
 
-  // const { query } = context
-  // const afterValue = query.afterValue || null
+//   const { data, loading, error, fetchMore } = await client.query({
+//     query: GET_POSTS,
+//     variables: {
+//       perPage: POSTS_PER_PAGE,
+//       offset: 0,
+//     },
+//     notifyOnNetworkStatusChange: true,
+//   });
 
-  const { data } = await client.query({
-    query: gql`
-      query GetWordPressPosts($first: Int!, $after: String) {
-        posts(where: { orderby: { field: DATE, order: DESC } }, first: $first, after: $after) {
-          nodes {
-            content
-            excerpt
-            title
-            slug
-            featuredImage {
-              node {
-                sourceUrl
-              }
-            }
-            author {
-              node {
-                name
-              }
-            }
-          }
-          pageInfo {
-            hasNextPage
-            hasPreviousPage
-            endCursor
-            startCursor
-          }
-          edges {
-            cursor
-          }
-        }
-      }
-    `,
-    variables: {
-      first: POSTS_PER_PAGE,
-      after: null,
-    },
-  });
+//   if (error) {
+//     return <p>Error occured</p>
+//   }
+//   if (!data && loading) {
+//       return <p>Loading...</p>
+//   }
+//   if(!data?.posts.edges.length) {
+//       return <p>No posts</p>
+//   }
 
-  // const endCursor = data.posts.pageInfo.endCursor;
-  // setAfterValue(endCursor);
+//   // const posts = data.posts.edges.map((edge) => edge.node)
+//   // const haveMorePosts = Boolean(data?.posts?.pageInfo?.hasNextPage)
 
-  // after = data.posts.pageInfo.endCursor;
+//   const onLoadMore = () => {
+//     fetchMore({
+//       variables: { after: data.posts.pageInfo.endCursor },
+//       updateQuery: (previousResult, { fetchMoreResult }) => {
+//         const newEdges = fetchMoreResult.posts.edges;
+//         const pageInfo = fetchMoreResult.posts.pageInfo;
 
-  return {
-    props: {
-      posts: data.posts.nodes,
-      postsPageInfo: data.posts,
-      // afterValue,
-    },
-  };
-}
+//         return newEdges.length
+//           ? {
+//               posts: {
+//                 __typename: previousResult.posts.__typename,
+//                 edges: [...previousResult.posts.edges, ...newEdges],
+//                 pageInfo,
+//               },
+//             }
+//           : previousResult;
+//       },
+//     });
+//   };
+
+//   return {
+//     props: {
+//       posts: data.posts.edges.map((edge) => edge.node),
+//       postsPageInfo: data.posts.pageInfo,
+//       morePosts: Boolean(data?.posts?.pageInfo?.hasNextPage),
+//     },
+//     revalidate: 1,
+//   };
+// }
+
+// const POSTS_PER_PAGE = 3;
+
+
+// const GET_POSTS = gql`
+// query GetWordPressPosts($offset: Int!, $perPage: Int!) {
+//   posts(where: {offsetPagination: {offset: $offset, size: $perPage}, orderby: {field: DATE, order: DESC}}) {
+//     pageInfo {
+//       offsetPagination {
+//         hasMore
+//         total
+//       }
+//     }
+//     edges {
+//       node {
+//         content
+//         excerpt
+//         slug
+//         title
+//         featuredImage {
+//           node {
+//             sourceUrl
+//           }
+//         }
+//         author {
+//           node {
+//             name
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+// `
