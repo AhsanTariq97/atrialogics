@@ -7,9 +7,10 @@ import BlogPage from '../../components/BlogPage'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router';
 
 export default function Blogs({ post }) {
-  
+
     let sectionIndex = 0;
     const processedContent = post.content?.replace(/<(h[1-6])/g, (match, p1) => {
         sectionIndex++;
@@ -98,6 +99,7 @@ export async function getStaticProps({ params }) {
                     title
                     content
                     date
+                    slug
                     featuredImage {
                         node {
                             sourceUrl

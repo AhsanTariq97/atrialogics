@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import Button from './constants/Button'
 import TeamCard from './constants/TeamCard'
 
@@ -12,7 +13,7 @@ const Team = () => {
             <TeamCard image='/assets/team/avatar-1.png' name='Basit Maqsood' post='Co-Founder, CTO' linkedin='https://www.linkedin.com/in/basitmaqsood/' twitter='https://twitter.com/MBasitMaqsood1' skype='skype:malikbasitmaqsood_1?chat' />
             <TeamCard image='/assets/team/avatar-3.jpg' name='Muhammad Ali' post='Growth Hacker' linkedin='https://www.linkedin.com/in/basitmaqsood/' twitter='https://twitter.com/MBasitMaqsood1' skype='skype:malikbasitmaqsood_1?chat' />
         </div>
-        <Button text='Contact Us' />
+        <Link href='#contact' ><Button text='Contact Us' /></Link>
     </div>
   )
 }

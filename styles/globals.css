@@ -3,10 +3,10 @@
 @tailwind utilities;    
 
 html {
-    scroll-behavior: smooth;
-  -webkit-scroll-behavior: smooth;
-  -moz-scroll-behavior: smooth;
-  -ms-scroll-behavior: smooth;
+    scroll-behavior: smooth!important;
+    -webkit-scroll-behavior: smooth!important;
+    -moz-scroll-behavior: smooth!important;
+    -ms-scroll-behavior: smooth!important;
 }
 body {
     font-family: 'Lexend Giga', sans-serif;

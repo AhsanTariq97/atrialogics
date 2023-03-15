@@ -21,10 +21,10 @@ const Navbar = () => {
                 <ul className={'hidden lg:flex flex-row justify-center items-center'}>
                     {/* {navbarData.links.map((item) => <li className='px-4 py-2'><Link href={item.to}><p className='text-base font-normal tracking-wide'>{item.label}</p></Link></li> )} */}
                     <li className='px-4 py-2 tracking-wide'><Link href="/"><p className='text-base font-normal tracking-wide'>Home</p></Link></li>
-                    <li className='px-4 py-2 tracking-wide'><Link href="/#services"><p className='text-base font-normal tracking-wide'>Services</p></Link></li>
-                    <li className='px-4 py-2 tracking-wide'><Link href="/#about"><p className='text-base font-normal tracking-wide'>About</p></Link></li>
-                    <li className='px-4 py-2 tracking-wide'><Link href="/#team"><p className='text-base font-normal tracking-wide'>Team</p></Link></li>
-                    <li className='px-4 py-2 tracking-wide'><Link href="/#contact"><p className='text-base font-normal tracking-wide'>Contact</p></Link></li>
+                    <li className='px-4 py-2 tracking-wide'><Link href="#services"><p className='text-base font-normal tracking-wide'>Services</p></Link></li>
+                    <li className='px-4 py-2 tracking-wide'><Link href="#about"><p className='text-base font-normal tracking-wide'>About</p></Link></li>
+                    <li className='px-4 py-2 tracking-wide'><Link href="#team"><p className='text-base font-normal tracking-wide'>Team</p></Link></li>
+                    <li className='px-4 py-2 tracking-wide'><Link href="#contact"><p className='text-base font-normal tracking-wide'>Contact</p></Link></li>
                 </ul>
                 <div className='hidden lg:block'>
                     <Link href="/blogs"><Button text='Blogs' /></Link>
@@ -35,10 +35,10 @@ const Navbar = () => {
                         <ul className='flex flex-col justify-center items-center w-full h-full text-black space-y-8'>
                             {/* {navbarData.links.map((item) => <li className='px-4 py-2'><Link href={item.to}><p className='text-base font-normal tracking-wide'>{item.label}</p></Link></li> )} */}
                             <li className='px-4 py-2 tracking-wide'><Link href="/"><p className='text-base font-normal tracking-wide'>Home</p></Link></li>
-                            <li className='px-4 py-2 tracking-wide'><Link href="/#services"><p className='text-base font-normal tracking-wide'>Services</p></Link></li>
-                            <li className='px-4 py-2 tracking-wide'><Link href="/#about"><p className='text-base font-normal tracking-wide'>About</p></Link></li>
-                            <li className='px-4 py-2 tracking-wide'><Link href="/#team"><p className='text-base font-normal tracking-wide'>Team</p></Link></li>
-                            <li className='px-4 py-2 tracking-wide'><Link href="/#contact"><p className='text-base font-normal tracking-wide'>Contact</p></Link></li>
+                            <li className='px-4 py-2 tracking-wide'><Link href="#services"><p className='text-base font-normal tracking-wide'>Services</p></Link></li>
+                            <li className='px-4 py-2 tracking-wide'><Link href="#about"><p className='text-base font-normal tracking-wide'>About</p></Link></li>
+                            <li className='px-4 py-2 tracking-wide'><Link href="#team"><p className='text-base font-normal tracking-wide'>Team</p></Link></li>
+                            <li className='px-4 py-2 tracking-wide'><Link href="#contact"><p className='text-base font-normal tracking-wide'>Contact</p></Link></li>
                             <Link href="/blogs"><Button text='Blogs' /></Link>
                             <Image className='absolute top-4 right-8 cursor-pointer brightness-0' src={'/assets/icons/close.svg'} width={25} height={25} alt='close toggle' onClick={() => setToggle(prev => !prev)} />
                         </ul>

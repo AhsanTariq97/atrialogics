@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 import Button from './constants/Button'
 
@@ -8,7 +9,7 @@ const Welcome = () => {
         <div className='flex flex-col justify-between items-start space-y-8 w-full max-w-md'>
             <h1 className='text-[40px] leading-[46px] font-bold tracking-wide'>Transform Your Vision into Reality</h1>
             <h3 className='text-xl font-normal text-[#6E7477] tracking-wide'>Top-notch Web and Mobile App Development Services</h3>
-            <Button text='Check our services' />
+            <Link href='#services' ><Button text='Check our services' /></Link>
         </div>
         <div className='relative'>
             <Image className='rounded-tl-[100px] rounded-br-[100px] sm:rounded-tl-[150px] sm:rounded-br-[150px]' src='/assets/welcome.jpg' width={544} height={500} />

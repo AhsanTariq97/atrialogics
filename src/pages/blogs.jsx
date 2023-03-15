@@ -6,20 +6,11 @@ import { useState } from 'react';
 
 import Navbar from '../components/Navbar';
 import BlogHomePage from '../components/BlogHomePage';
+import BlogHomePage2 from '../components/BlogHomePage2';
 import Footer from '../components/Footer';
 import LoadMoreList from '../components/LoadMoreList'
 
 export default function Home({ posts, postsPageInfo }) {
-  
-  // console.log(postsPageInfo.pageInfo.endCursor)
-
-  // const [ afterValue, setAfterValue ] = useState(null)
-
-  // const handleNextPage = () => {
-  //   if (postsPageInfo.pageInfo.hasNextPage) {
-  //     setAfterValue(postsPageInfo.pageInfo.endCursor);
-  //   }
-  // };
 
   return (
     <>
@@ -36,12 +27,8 @@ export default function Home({ posts, postsPageInfo }) {
           <div className='py-[50px]'></div>
         </header>
         <main className='max-w-screen-xl mx-auto pb-16'>
-          <BlogHomePage posts={posts} />
-
-
-          {/* <LoadMoreList /> */}
-
-
+          {/* <BlogHomePage posts={posts} /> */}
+          <BlogHomePage2 />
           {/* {postsPageInfo.hasNextPage && (
             <div className='flex flex-col justify-center items-center'>
               <button onClick={handleNextPage}>
@@ -60,90 +47,52 @@ export default function Home({ posts, postsPageInfo }) {
   );
 }
 
-// export default function SecondPage() {
+const POSTS_PER_PAGE = 3
 
-//   const { data, loading, error, fetchMore } = await client.query({
-//     query: GET_POSTS,
-//     variables: {
-//       perPage: POSTS_PER_PAGE,
-//       offset: 0,
-//     },
-//     notifyOnNetworkStatusChange: true,
-//   });
+export async function getStaticProps() {
 
-//   if (error) {
-//     return <p>Error occured</p>
-//   }
-//   if (!data && loading) {
-//       return <p>Loading...</p>
-//   }
-//   if(!data?.posts.edges.length) {
-//       return <p>No posts</p>
-//   }
+  const { data } = await client.query({
+    query: gql`
+      query GetWordPressPosts($offset: Int!, $size: Int!) {
+        posts(where: {offsetPagination: {offset: $offset, size: $size}, orderby: {field: DATE, order: DESC}}) {
+          pageInfo {
+            offsetPagination {
+              hasMore
+              hasPrevious
+              total
+            }
+          }
+          edges {
+              node {
+                  content
+                  excerpt
+                  slug
+                  title
+                  featuredImage {
+                      node {
+                      sourceUrl
+                      }
+                  }
+                  author {
+                      node {
+                      name
+                      }
+                  }
+              }
+          }
+        }
+      }
+    `,
+    variables: {
+      size: POSTS_PER_PAGE,
+      offset: 0,
+    },
+  });
 
-//   // const posts = data.posts.edges.map((edge) => edge.node)
-//   // const haveMorePosts = Boolean(data?.posts?.pageInfo?.hasNextPage)
-
-//   const onLoadMore = () => {
-//     fetchMore({
-//       variables: { after: data.posts.pageInfo.endCursor },
-//       updateQuery: (previousResult, { fetchMoreResult }) => {
-//         const newEdges = fetchMoreResult.posts.edges;
-//         const pageInfo = fetchMoreResult.posts.pageInfo;
-
-//         return newEdges.length
-//           ? {
-//               posts: {
-//                 __typename: previousResult.posts.__typename,
-//                 edges: [...previousResult.posts.edges, ...newEdges],
-//                 pageInfo,
-//               },
-//             }
-//           : previousResult;
-//       },
-//     });
-//   };
-
-//   return {
-//     props: {
-//       posts: data.posts.edges.map((edge) => edge.node),
-//       postsPageInfo: data.posts.pageInfo,
-//       morePosts: Boolean(data?.posts?.pageInfo?.hasNextPage),
-//     },
-//     revalidate: 1,
-//   };
-// }
-
-// const POSTS_PER_PAGE = 3;
-
-
-// const GET_POSTS = gql`
-// query GetWordPressPosts($offset: Int!, $perPage: Int!) {
-//   posts(where: {offsetPagination: {offset: $offset, size: $perPage}, orderby: {field: DATE, order: DESC}}) {
-//     pageInfo {
-//       offsetPagination {
-//         hasMore
-//         total
-//       }
-//     }
-//     edges {
-//       node {
-//         content
-//         excerpt
-//         slug
-//         title
-//         featuredImage {
-//           node {
-//             sourceUrl
-//           }
-//         }
-//         author {
-//           node {
-//             name
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-// `
+  return {
+    props: {
+      posts: data.posts.edges.map((edge) => edge.node),
+      postsPageInfo: data.posts.pageInfo.offsetPagination,
+    },
+  };
+}

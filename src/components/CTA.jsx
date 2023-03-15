@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 const CTA = () => {
   return (
@@ -10,8 +11,8 @@ const CTA = () => {
             </div>
             <p className='text-base font-normal text-center tracking-wide w-full'>We require basic project specifications in a documented form and a clear UI design to start a project. If a client does not have a UI design, we are happy to provide it. This allows us to provide accurate estimates and deliver a solution that meets the client's specific needs and goals</p>
             <div className='flex flex-col justify-evenly items-center w-full xs:flex-row space-y-2 xs:space-y-0'>
-                <button className='text-base font-semibold tracking-wide'>Get a quote</button>
-                <button className='text-base font-semibold tracking-wide'>Contact Us</button>
+              <Link href='#contact' ><button className='text-base font-semibold tracking-wide'>Get a quote</button></Link>
+              <Link href='#contact' ><button className='text-base font-semibold tracking-wide'>Contact Us</button></Link>
             </div>
         </div>
     </div>

@@ -119,7 +119,7 @@ const BlogPage = ({ headings, processedContent }) => {
                     reset();
                   })}>
                     <label htmlFor="email">Your email*</label>
-                    <input type="email" placeholder='example@email.com' className={`${errors.email ? 'border border-red-600' : '' } w-full border border-slate-400 bg-slate-200 p-2 rounded-xl outline-none`} {...register('email', {required: 'Required', validate: validateEmail })} />
+                    <input type="email" placeholder='example@email.com' className={`${errors.email ? 'border-red-600' : 'border-slate-400' } w-full border bg-slate-200 p-2 rounded-xl outline-none`} {...register('email', {required: 'Required', validate: validateEmail })} />
                     <p className='text-red-600'>{errors.email?.message}</p>
                     <input type="submit" value="Submit" className='text-white bg-[#7187A2] px-4 py-2 rounded-full cursor-pointer hover:bg-[#75C3B9]' />
                   </form>
