@@ -10,18 +10,17 @@ import Button from './Button';
 
 const ContactForm = () => {
 
-  const form = useRef();
+  const form = useRef<HTMLFormElement>(null);
 
-  const { register, handleSubmit, control, reset, formState: { errors } } = useForm({ defaultValues: { /*date: currentDate()*/ } });
+  const { register, handleSubmit, control, reset, formState: { errors } } = useForm<{ name: string, email: string, company: string, date: Date, }>({ defaultValues: { /*date: currentDate()*/ } });
 
   const { field } = useController({
     name: 'date',
     control,
-    defaultValue: null,
     rules: {required: 'Required'}
   })
 
-  const validateEmail = (email) => {
+  const validateEmail = (email: string) => {
     if (validator.isEmail(email)) {
       return true
     } else {
@@ -32,7 +31,7 @@ const ContactForm = () => {
   // EmailJS 
 
   const updateEmailJS = () => {
-    emailjs.sendForm('contact_service', 'contact_form', form.current, 'J_xT9g7xbilo1oKrW')
+    emailjs.sendForm('contact_service', 'contact_form', form.current!, 'J_xT9g7xbilo1oKrW')
     .then((result) => {
         console.log(result.text);
     }, (error) => {

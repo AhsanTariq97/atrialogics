@@ -5,11 +5,11 @@ import Button from './constants/Button';
 
 import data from './projectData/data'
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
 
     const navbarData = data.navbar
     
-    const [toggle, setToggle] = useState(false)
+    const [toggle, setToggle] = useState<boolean>(false)
 
   return (
     <div className='fixed top-0 z-[1] w-full bg-white'>
@@ -27,7 +27,7 @@ const Navbar = () => {
                     <li className='px-4 py-2 tracking-wide'><Link href="#contact"><p className='text-base font-normal tracking-wide'>Contact</p></Link></li>
                 </ul>
                 <div className='hidden lg:block'>
-                    <Link href="/blogs"><Button text='Blogs' /></Link>
+                    <Link href="/blogs"><Button type='text' text='Blogs' /></Link>
                 </div>
                 <div className='flex lg:hidden justify-end items-center'>
                     <Image src={toggle ? '' : '/assets/icons/menu.svg'} className='cursor-pointer brightness-0' width={25} height={25} alt='menu toggle' onClick={() => setToggle(prev => !prev)} />
@@ -39,7 +39,7 @@ const Navbar = () => {
                             <li className='px-4 py-2 tracking-wide'><Link href="#about"><p className='text-base font-normal tracking-wide'>About</p></Link></li>
                             <li className='px-4 py-2 tracking-wide'><Link href="#team"><p className='text-base font-normal tracking-wide'>Team</p></Link></li>
                             <li className='px-4 py-2 tracking-wide'><Link href="#contact"><p className='text-base font-normal tracking-wide'>Contact</p></Link></li>
-                            <Link href="/blogs"><Button text='Blogs' /></Link>
+                            <Link href="/blogs"><Button type='text' text='Blogs' /></Link>
                             <Image className='absolute top-4 right-8 cursor-pointer brightness-0' src={'/assets/icons/close.svg'} width={25} height={25} alt='close toggle' onClick={() => setToggle(prev => !prev)} />
                         </ul>
                     </div>

@@ -7,31 +7,63 @@ import BlogPage from '../../components/BlogPage'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'
 
-export default function Blogs({ post }) {
+interface Props {
+    post: any;
+}
 
+export default function Blogs({ post }: Props): JSX.Element {
+
+    // Adding id attribute to all the h tags in the content
     let sectionIndex = 0;
-    const processedContent = post.content?.replace(/<(h[1-6])/g, (match, p1) => {
+    const processedContent = post.content?.replace(/<(h[1-6])/g, (match: any, p1: any) => {
         sectionIndex++;
         return `<${p1} id="section${sectionIndex}" class="before:block before:h-[100px] before:-mt-[100px]"`;
     });
 
     // To determine how long it will take to read the post. General speed is 200 words per minute. Change 200 to something else to change the rate.
-    const minRead = (content) => {
+    const minRead = (content: string) => {
         const words = content.split(' ')
         const minutesToRead = Math.ceil(words.length / 200);
         return minutesToRead
     }
   
-    const [headings, setHeadings] = useState([]);
+    // Creating an array of headings from the content, so we can display them in the sidebar
+    const [headings, setHeadings] = useState<Element[]>([]);
     useEffect(() => {
         const content = processedContent;
         const parser = new DOMParser();
         const parsedContent = parser.parseFromString(content, "text/html");
         const headings = parsedContent.querySelectorAll("h1, h2, h3, h4, h5, h6");
         setHeadings(Array.from(headings));
+    }, [processedContent]);
+
+
+    useEffect(() => {
+        
+        const onPopState = (event: any) => {
+            // if (event.state && event.state.activeIndex) {
+            //     // Handle the state data here
+            //     console.log('adwjan', event.state.activeIndex);
+            // }
+            const url = `/blogs?activeIndex=${activeIndexData}`;
+            const state = { activeIndex: activeIndexData };
+            history.pushState(state, '', url);
+            router.push(url);
+        };
+    
+        window.addEventListener('popstate', onPopState);
+    
+        return () => {
+          window.removeEventListener('popstate', onPopState);
+        };
     }, []);
+
+    const router = useRouter();
+    const activeIndexData = router.query.activeIndex;
+
+    console.log('data:', activeIndexData)
 
     return (
         <>
@@ -49,14 +81,14 @@ export default function Blogs({ post }) {
                 </header>
                 <main className='max-w-screen-xl mx-auto'>
                     <div className='flex flex-col justify-between items-start px-8 pb-16 space-y-16'>
-                        {post.featuredImage ? <Image className='rounded-3xl self-center h-[80vh]' src={post.featuredImage.node.sourceUrl} width={800} height={500} /> : <Image src='/assets/ecommerce.svg' className='rounded-3xl self-center h-[80vh]' alt='' width={800} height={500} /> }
+                        {post.featuredImage ? <Image className='rounded-3xl self-center h-[80vh]' src={post.featuredImage.node.sourceUrl} width={800} height={500} alt='' /> : <Image src='/assets/ecommerce.svg' className='rounded-3xl self-center h-[80vh]' alt='' width={800} height={500} /> }
                         <h1 className='text-4xl font-bold w-full text-left'>{post.title}</h1>
                         <div className='flex justify-start items-center space-x-16'>
                             <h3 className='text-lg font-medium'>{post.author.node.name}</h3>
                             {post.content && <p>{`${minRead(processedContent)} min read`}</p>}
                         </div>
-                        <BlogPage headings={headings} processedContent={processedContent} post={post} />
-                        <Link href='/blogs'>&larr; Back to Blog</Link>
+                        <BlogPage headings={headings} processedContent={processedContent} />
+                        <Link href={{pathname: '/blogs', query: { activeIndex: activeIndexData}}}>&larr; Back to Blog</Link>
                     </div>
                 </main>
                 <footer className='w-full'>
@@ -81,7 +113,7 @@ export async function getStaticPaths() {
     })
 
     return {
-        paths: result.data.posts.nodes.map(({ slug }) => {
+        paths: result.data.posts.nodes.map(({ slug }: any) => {
             return {
                 params: { slug }
             }
@@ -90,7 +122,7 @@ export async function getStaticPaths() {
     }
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: any) {
     const { slug } = params;
     const result = await client.query({
         query: gql`

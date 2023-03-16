@@ -5,7 +5,7 @@ import { AiFillInstagram } from 'react-icons/ai'
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa'
 import Link from 'next/link'
 
-const Contact = () => {
+const Contact: React.FC = () => {
   return (
     <div id='contact' className='flex flex-col justify-between items-center lg:flex-row lg:items-start py-16 px-8'>
         <div className='flex flex-col justify-between items-center space-y-8 max-w-md lg:mt-16 lg:items-start lg:space-y-16'>

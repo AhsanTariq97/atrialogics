@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Button from './constants/Button'
 import TeamCard from './constants/TeamCard'
 
-const Team = () => {
+const Team: React.FC = () => {
   return (
     <div id='team' className='flex flex-col justify-between items-center space-y-4 px-8 py-4'>
         <h1 className='text-3xl font-bold tracking-wide'>Meet our team</h1>
@@ -13,7 +13,7 @@ const Team = () => {
             <TeamCard image='/assets/team/avatar-1.png' name='Basit Maqsood' post='Co-Founder, CTO' linkedin='https://www.linkedin.com/in/basitmaqsood/' twitter='https://twitter.com/MBasitMaqsood1' skype='skype:malikbasitmaqsood_1?chat' />
             <TeamCard image='/assets/team/avatar-3.jpg' name='Muhammad Ali' post='Growth Hacker' linkedin='https://www.linkedin.com/in/basitmaqsood/' twitter='https://twitter.com/MBasitMaqsood1' skype='skype:malikbasitmaqsood_1?chat' />
         </div>
-        <Link href='#contact' ><Button text='Contact Us' /></Link>
+        <Link href='#contact' ><Button type='text' text='Contact Us' /></Link>
     </div>
   )
 }

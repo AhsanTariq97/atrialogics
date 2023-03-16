@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-const CTA = () => {
+const CTA: React.FC = () => {
   return (
     <div className='px-8 py-16 pb-32'>
         <div className='flex flex-col justify-between items-center space-y-8 md:px-16 py-8 max-w-2xl mx-auto rounded-xl shadow-xl shadow-gray-300'>

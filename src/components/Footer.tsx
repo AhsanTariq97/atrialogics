@@ -3,7 +3,7 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn, FaArrowUp } from 'react-icons/fa'
 import { AiFillInstagram } from 'react-icons/ai'
 import ContactDetails from './constants/ContactDetails'
 
-const Footer = () => {
+const Footer: React.FC = () => {
 
     function scrollToTop() {
         window.scrollTo({
