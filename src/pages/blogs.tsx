@@ -5,7 +5,7 @@ import { gql } from '@apollo/client';
 import { useState } from 'react';
 
 import Navbar from '../components/Navbar';
-import BlogHomePage from '../components/BlogHomePage';
+// import BlogHomePage from '../components/BlogHomePage';
 import BlogHomePage2 from '../components/BlogHomePage2';
 import Footer from '../components/Footer';
 import LoadMoreList from '../components/LoadMoreList'
@@ -29,6 +29,7 @@ export default function Home(): JSX.Element {
         <main className='max-w-screen-xl mx-auto pb-16'>
           {/* <BlogHomePage posts={posts} /> */}
           <BlogHomePage2 />
+          {/* <LoadMoreList /> */}
 
 
         </main>

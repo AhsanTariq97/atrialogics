@@ -21,10 +21,10 @@ const Navbar: React.FC = () => {
                 <ul className={'hidden lg:flex flex-row justify-center items-center'}>
                     {/* {navbarData.links.map((item) => <li className='px-4 py-2'><Link href={item.to}><p className='text-base font-normal tracking-wide'>{item.label}</p></Link></li> )} */}
                     <li className='px-4 py-2 tracking-wide'><Link href="/"><p className='text-base font-normal tracking-wide'>Home</p></Link></li>
-                    <li className='px-4 py-2 tracking-wide'><Link href="#services"><p className='text-base font-normal tracking-wide'>Services</p></Link></li>
-                    <li className='px-4 py-2 tracking-wide'><Link href="#about"><p className='text-base font-normal tracking-wide'>About</p></Link></li>
-                    <li className='px-4 py-2 tracking-wide'><Link href="#team"><p className='text-base font-normal tracking-wide'>Team</p></Link></li>
-                    <li className='px-4 py-2 tracking-wide'><Link href="#contact"><p className='text-base font-normal tracking-wide'>Contact</p></Link></li>
+                    <li className='px-4 py-2 tracking-wide'><Link href="/#services"><p className='text-base font-normal tracking-wide'>Services</p></Link></li>
+                    <li className='px-4 py-2 tracking-wide'><Link href="/#about"><p className='text-base font-normal tracking-wide'>About</p></Link></li>
+                    <li className='px-4 py-2 tracking-wide'><Link href="/#team"><p className='text-base font-normal tracking-wide'>Team</p></Link></li>
+                    <li className='px-4 py-2 tracking-wide'><Link href="/#contact"><p className='text-base font-normal tracking-wide'>Contact</p></Link></li>
                 </ul>
                 <div className='hidden lg:block'>
                     <Link href="/blogs"><Button type='text' text='Blogs' /></Link>

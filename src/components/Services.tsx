@@ -1,7 +1,7 @@
 import React from 'react'
 import ServiceCard from './constants/ServiceCard'
 
-const Services = () => {
+const Services: React.FC = () => {
   return (
     <div id='services' className='flex flex-col justify-between items-center space-y-16 py-8 lg:py-16'>
         <h1 className='text-3xl font-bold tracking-wide'>Our Services</h1>
