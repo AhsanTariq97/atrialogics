@@ -1,10 +1,19 @@
 import React from 'react'
 import Link from 'next/link'
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react'
+
 const CTA: React.FC = () => {
+
+  useEffect(() => {
+    AOS.init();
+  }, [])
+
   return (
     <div className='px-8 py-16 pb-32'>
-        <div className='flex flex-col justify-between items-center space-y-8 md:px-16 py-8 max-w-2xl mx-auto rounded-xl shadow-xl shadow-gray-300'>
+        <div data-aos='fade-up' className='flex flex-col justify-between items-center space-y-8 md:px-16 py-8 max-w-2xl mx-auto rounded-xl shadow-xl shadow-gray-300'>
             <div className='flex flex-col justify-between items-center w-full space-y-2'>
                 <h3 className='text-base font-semibold text-center tracking-wide'>Interested in our services?</h3>
                 <h2 className='text-lg font-bold text-center tracking-wide'>let's discuss !</h2>

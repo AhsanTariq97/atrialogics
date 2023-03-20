@@ -9,7 +9,7 @@ interface PaginationButtonProps {
 const PaginationButton: React.FC<PaginationButtonProps> = ({ index, activeIndex, onLoadMore }) => {
   return (
     <>
-        <button className={`${activeIndex === index ? 'bg-slate-300' : ''} px-4 py-2 rounded-full`} key={index} onClick={() => onLoadMore(index)}>{index + 1}</button>
+        <button className={`${activeIndex === index ? 'bg-[#3e536e] text-white' : 'border border-gray-300'} w-[45px] h-[45px] rounded-full shadow-xl`} key={index} onClick={() => onLoadMore(index)}>{index + 1}</button>
     </>
   )
 }

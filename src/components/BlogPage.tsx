@@ -5,6 +5,9 @@ import validator from 'validator';
 import emailjs from '@emailjs/browser';
 import Link from 'next/link';
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 //   const ref = useRef(null);
 //   const [isVisible, setIsVisible] = useState(false);
 
@@ -39,6 +42,9 @@ type Props = {
 
 const BlogPage: React.FC<Props> = ({ headings, processedContent }) => {
 
+  useEffect(() => {
+    AOS.init();
+  }, [])
 
   // React Hook Form
   const { register, handleSubmit, reset, formState: { errors } } = useForm<{ email: string }>({ defaultValues: { /*date: currentDate()*/ } });
@@ -111,12 +117,22 @@ const BlogPage: React.FC<Props> = ({ headings, processedContent }) => {
 
   });
 
+  // Scroll to the heading but without href id which modifies the URL too.
+  const smoothScrollTo = (index: number) => {
+    const id = `section${index + 1}`
+    const element = document.getElementById(id);
+    element!.scrollIntoView({
+        block: 'start',
+        behavior: 'smooth' // smooth scroll
+    })
+  };
+
   return (
     <>
       <div className='w-full max-w-screen-xl'>
         <div className='relative flex flex-row justify-between items-start'>
           <div ref={myContentRef} className={`h-tag-style text-left ${fixSidebar ? 'md:pr-[300px]' : ''}`}>
-            <div className='pr-8' dangerouslySetInnerHTML={{ __html: processedContent }} />
+            <div data-aos='fade-up' className='pr-8' dangerouslySetInnerHTML={{ __html: processedContent }} />
           </div>
 
           <div ref={mySidebarRef} className={`p-2 pl-8 hidden md:flex flex-col justify-between items-start space-y-8
@@ -130,24 +146,27 @@ const BlogPage: React.FC<Props> = ({ headings, processedContent }) => {
                 reset();
               })}>
                 <label htmlFor="email">Your email*</label>
-                <input type="email" placeholder='example@email.com' className={`${errors.email ? 'border-red-600' : 'border-slate-400' } w-full border bg-slate-200 p-2 rounded-xl outline-none`} {...register('email', {required: 'Required', validate: validateEmail })} />
-                <p className='text-red-600'>{errors.email?.message}</p>
+                <input type="email" placeholder='example@email.com' className={`${errors.email ? 'border-red-600' : 'border-[#7187A2]' } w-full border p-2 rounded-xl outline-none shadow-lg`} {...register('email', {required: 'Required', validate: validateEmail })} />
+                <p className='text-red-600 py-1'>{errors.email?.message}</p>
                 <input type="submit" value="Submit" className='text-white bg-[#7187A2] px-4 py-2 rounded-full cursor-pointer hover:bg-[#75C3B9]' />
               </form>
             </div>
             
-            {headings.length > 0 && <div className='border border-black rounded-3xl p-2 w-full max-h-[300px] overflow-auto'>
+            {/* {headings.length > 0 && <div className='border border-black rounded-3xl p-2 w-full max-h-[300px] overflow-auto'>
               <div className='flex flex-col space-y-4 py-2'>
                 <h3 className='text-lg font-bold'>Table of Contents</h3>
                 <div className='flex flex-col space-y-2'>
                   {Array.from(headings).map((heading, index) => (
-                    <Link href={`#section${index + 1}`}>
+                    <Link href={`#section${index + 1}`} onClick={(event) => {
+                      event.preventDefault();
+                      smoothScrollTo(index)
+                    }}>
                       <p key={heading.textContent} className='text-sm'>{heading.textContent}</p>
                     </Link>
                   ))}              
                 </div>
               </div>
-            </div>}
+            </div>} */}
           </div>
         </div>
       </div>
