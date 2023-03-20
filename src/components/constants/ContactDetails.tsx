@@ -2,7 +2,12 @@ import React from 'react'
 import { MdPhone, MdLocationPin } from 'react-icons/md'
 import { RiSendPlaneFill } from 'react-icons/ri'
 
-const ContactDetails = ({ textColor, iconColor }) => {
+interface ContactDetailsProps {
+  textColor: string;
+  iconColor: string;
+}
+
+const ContactDetails: React.FC<ContactDetailsProps> = ({ textColor, iconColor }) => {
   return (
     <div className={`flex flex-col justify-between items-center space-y-4 lg:items-start ${textColor}`}>
         <div className='flex justify-between items-start'>
