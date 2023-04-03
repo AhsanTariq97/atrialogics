@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
 import Navbar from '../components/Navbar';
-import BlogHomePage from '../components/BlogHomePage';
+import ProjectHomePage from '../components/ProjectHomePage';
 import Footer from '../components/Footer';
 
 export default function Home(): JSX.Element {
@@ -21,7 +21,7 @@ export default function Home(): JSX.Element {
           <div className='py-[50px]'></div>
         </header>
         <main className='lg:max-w-screen-xl md:max-w-screen-md mx-auto pb-16'>
-          <BlogHomePage />
+          <ProjectHomePage />
         </main>
         <footer className='w-full'>
           <Footer />
