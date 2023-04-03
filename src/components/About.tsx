@@ -16,7 +16,7 @@ const About: React.FC = () => {
     <div id='about' className='before:block before:h-[100px] before:-mt-[100px]'>
       <div className='flex flex-col lg:flex-row justify-between items-center px-8 py-32 space-y-24 lg:space-y-0 lg:space-x-16'>
           <div className='relative max-w-md lg:max-w-sm'>
-              <Image data-aos='fade' className='rounded-tl-[100px] rounded-br-[100px] sm:rounded-tl-[150px] sm:rounded-br-[150px]' src='/assets/about-us.jpg' width={448} height={400} alt='' />
+              <Image data-aos='fade' className='rounded-tl-[128px] rounded-br-[128px] sm:rounded-tl-[150px] sm:rounded-br-[150px]' src='/assets/about-us.jpg' width={448} height={540} alt='' />
               <div>
                   <Image data-aos='fade' className='absolute rounded-full -top-24 left-0' src='/assets/webDevIcons/reactjs.png' width={90} height={90} alt='' />
                   <Image data-aos='fade' className='absolute rounded-full -top-20 right-32' src='/assets/webDevIcons/Gatsby.png' width={50} height={50} alt='' />

@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-export default function BlogHomePage2(): JSX.Element {
+export default function BlogHomePage(): JSX.Element {
 
   useEffect(() => {
     AOS.init();
@@ -21,29 +21,6 @@ export default function BlogHomePage2(): JSX.Element {
   //    We also have to add popstate event handler so that we can pass currentIndex in case user press browser back button.
   //    But the problem in this method was that we can't store the userIndex value when user reloads the page. Forcing us to go to the 1st page. 
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-
-  // const activeIndexData = {
-  //   activeIndex: activeIndex,
-  // }
-
-  // const router = useRouter();
-  // let dataReceived = router.query.activeIndex;
-  
-  // console.log('datareceived: ', dataReceived)
-  // console.log(Number(dataReceived))
-  
-  // Storing value on reloading the page
-  // useEffect(() => {
-  //   const handleBeforeUnload = (): void => {
-  //     // dataReceived = undefined
-
-  //     // console.log('before reload:', activeIndex)
-  //   }
-  //   window.addEventListener('beforeunload', handleBeforeUnload)
-  //   return () => {
-  //     window.removeEventListener('beforeunload', handleBeforeUnload)
-  //   }
-  // }, [])
 
   // Accessing the stored value from session storage
   useEffect(() => {
@@ -134,7 +111,7 @@ export default function BlogHomePage2(): JSX.Element {
   
   return (
       <div className='flex flex-col justify-between items-center space-y-8 py-8 w-[90%] mx-auto'>
-      <h2 data-aos='fade-down' className='text-2xl font-bold md:text-3xl py-4'>Blogs</h2>
+      <h2 data-aos='fade-down' className='text-2xl font-bold md:text-3xl py-4 [text-shadow:_0_10px_20px_rgb(0_0_0_/_20%)]'>Blogs</h2>
           <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
               {posts.map((post) => {
                   const { slug, title, excerpt, content, featuredImage, author } = post;

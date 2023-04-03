@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image';
 import { FaLinkedinIn, FaTwitter } from "react-icons/fa";
-import { ImSkype } from 'react-icons/im'
+import { ImSkype } from 'react-icons/im';
 import Link from 'next/link';
 
 import AOS from 'aos';
@@ -29,9 +29,9 @@ const TeamCard: React.FC<TeamCardProps> = ({ image, name, post, linkedin, twitte
         <h3 className='text-base font-bold tracking-wide'>{name}</h3>
         <p className='text-sm font-normal text-[#6E7477] tracking-wide'>{post}</p>
         <div className='flex justify-evenly items-center space-x-4'>
-            <Link href={linkedin}><FaLinkedinIn size={20} color='#0C4B5B' /></Link>
-            <Link href={twitter}><FaTwitter size={20} color='#0C4B5B' /></Link>
-            <Link href={skype}><ImSkype size={20} color='#0C4B5B' /></Link>
+            <Link href={linkedin} target='_blank'><FaLinkedinIn size={20} color='#0C4B5B' /></Link>
+            <Link href={twitter} target='_blank'><FaTwitter size={20} color='#0C4B5B' /></Link>
+            <Link href={skype} target='_blank'><ImSkype size={20} color='#0C4B5B' /></Link>
         </div>
     </div>
   )

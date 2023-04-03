@@ -12,11 +12,11 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({ textColor, iconColor })
     <div className={`flex flex-col justify-between items-center space-y-4 lg:items-start ${textColor}`}>
         <div className='flex justify-between items-start'>
             <MdLocationPin className='min-w-[25px]' size={25} color={iconColor} />
-            <p className='text-sm font-normal text-center lg:text-left tracking-wide pl-2'>T11,E-8 markaz, Haidari Chowk, <br />Block E Satellite Town, Rawalpindi, Pakistan</p>
+            <p className='text-sm font-normal text-center lg:text-left tracking-wide pl-2'>F18, E-8 markaz, Haidari Chowk, <br />Block E Satellite Town, Rawalpindi, Pakistan</p>
         </div>
         <div className='flex justify-between items-start'>
             <MdPhone size={25} color={iconColor} />
-            <p className='text-sm font-normal tracking-wide pl-2'>+92-333-6251579</p>
+            <p className='text-sm font-normal tracking-wide pl-2'>+92-333-6664423</p>
         </div>
         <div className='flex justify-between items-start'>
             <RiSendPlaneFill size={25} color={iconColor} />
