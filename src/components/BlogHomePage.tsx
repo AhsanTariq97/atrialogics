@@ -17,40 +17,40 @@ export default function BlogHomePage(): JSX.Element {
   // 1. For highlighting the current page in pagination
   // 2. This value is stored in session storage whenever user reloads or opens a blog, so that when user navigates back they land onto the same page (pagination) user left
   // 3. You can use queries for that too, by passing queries in url as we navigate to the new page. 
-  //    So we will pass activeIndex to the individual blog page, then pass it back from there when we go back to the blog home page. 
+  //    So we will pass blogActiveIndex to the individual blog page, then pass it back from there when we go back to the blog home page. 
   //    We also have to add popstate event handler so that we can pass currentIndex in case user press browser back button.
   //    But the problem in this method was that we can't store the userIndex value when user reloads the page. Forcing us to go to the 1st page. 
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [blogActiveIndex, setBlogActiveIndex] = useState<number | null>(null);
 
   // Accessing the stored value from session storage
   useEffect(() => {
-    const storedState = sessionStorage.getItem("myActiveIndex");
+    const storedState = sessionStorage.getItem("myblogActiveIndex");
     if (storedState === null) {
-      setActiveIndex(0)
+      setBlogActiveIndex(0)
     } else {
-      setActiveIndex(JSON.parse(storedState));
+      setBlogActiveIndex(JSON.parse(storedState));
     }
   }, [])
 
   // Storing value on clicking a blog link
   const handleClick = (): void => {
-    sessionStorage.setItem("myActiveIndex", JSON.stringify(activeIndex)); 
+    sessionStorage.setItem("myblogActiveIndex", JSON.stringify(blogActiveIndex)); 
   }
 
   //Storing value on reloading the page
   useEffect(() => {
     const handleBeforeUnload = (): void => {
-      sessionStorage.setItem('myActiveIndex', JSON.stringify(activeIndex))
+      sessionStorage.setItem('myblogActiveIndex', JSON.stringify(blogActiveIndex))
     }
     window.addEventListener('beforeunload', handleBeforeUnload)
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload)
     }
-  }, [activeIndex])
+  }, [blogActiveIndex])
 
   // Fetching initial posts depending on the active index
   const { data, loading, error, fetchMore } = useQuery<GetWordPressPostsData, GetWordPressPostsVariables>(GET_POSTS, {
-      variables: {size: BATCH_SIZE, offset: activeIndex ? activeIndex * BATCH_SIZE : 0 },
+      variables: {size: BATCH_SIZE, offset: blogActiveIndex ? blogActiveIndex * BATCH_SIZE : 0 },
       notifyOnNetworkStatusChange: true,
   }) 
 
@@ -83,13 +83,13 @@ export default function BlogHomePage(): JSX.Element {
     let offset: number;
     
     if (index === 'prev') {
-      setActiveIndex(activeIndex! - 1);
-      offset = activeIndex! * BATCH_SIZE - BATCH_SIZE
+      setBlogActiveIndex(blogActiveIndex! - 1);
+      offset = blogActiveIndex! * BATCH_SIZE - BATCH_SIZE
     } else if (index === 'next') {
-      setActiveIndex(activeIndex! + 1);
-      offset = activeIndex! * BATCH_SIZE + BATCH_SIZE
+      setBlogActiveIndex(blogActiveIndex! + 1);
+      offset = blogActiveIndex! * BATCH_SIZE + BATCH_SIZE
     } else {
-      setActiveIndex(Number(index))
+      setBlogActiveIndex(Number(index))
       offset = Number(index) * BATCH_SIZE;
     }
     
@@ -107,7 +107,7 @@ export default function BlogHomePage(): JSX.Element {
     const words = content.split(' ')
     const minutesToRead = Math.ceil(words.length / 200);
     return minutesToRead
-}
+  }
   
   return (
       <div className='flex flex-col justify-between items-center space-y-8 py-8 w-[90%] mx-auto'>
@@ -137,74 +137,74 @@ export default function BlogHomePage(): JSX.Element {
               })}
           </ul>
           <div className='flex justify-between items-center space-x-1 xs:space-x-2 md:space-x-4 text-sm xs:text-base sm:text-lg'>
-            <button disabled={activeIndex === 0} onClick={() => onLoadMore('prev')} className={`${activeIndex === 0 ? 'cursor-default opacity-25' : ''} w-[45px] h-[45px] border border-gray-300 rounded-full shadow-xl`} >
+            <button disabled={blogActiveIndex === 0} onClick={() => onLoadMore('prev')} className={`${blogActiveIndex === 0 ? 'cursor-default opacity-25' : ''} w-[45px] h-[45px] border border-gray-300 rounded-full shadow-xl`} >
               <Image src='/assets/icons/backward.svg' className='mx-auto' alt='' width={10} height={10} />
             </button>
             {Array.from({length: noOfPages}, (_,index) => {
               //For less than 5 pages, show all pagination. If greater than 5, we go to else condition
               if (noOfPages <= 5 ) {
                 return (
-                  <PaginationButton index={index} activeIndex={activeIndex} onLoadMore={onLoadMore} />
+                  <PaginationButton index={index} activeIndex={blogActiveIndex} onLoadMore={onLoadMore} />
                 )
               } else {
-                if (activeIndex === 0) { /*If activeIndex is 0, then we show the first 3 and then the last one*/
+                if (blogActiveIndex === 0) { /*If blogActiveIndex is 0, then we show the first 3 and then the last one*/
                   if (index < 3) {
                     return (
-                      <PaginationButton index={index} activeIndex={activeIndex} onLoadMore={onLoadMore} />
+                      <PaginationButton index={index} activeIndex={blogActiveIndex} onLoadMore={onLoadMore} />
                     )
                   }
                   if (index === noOfPages -1) {
                     return (
                       <>
                         <button className='cursor-default'>...</button>
-                        <PaginationButton index={index} activeIndex={activeIndex} onLoadMore={onLoadMore} />
+                        <PaginationButton index={index} activeIndex={blogActiveIndex} onLoadMore={onLoadMore} />
                       </>
                     )
                   }
-                } else if (activeIndex === noOfPages - 1) { /*If activeIndex is the last one, then we show the last 3 and the 1st one*/
+                } else if (blogActiveIndex === noOfPages - 1) { /*If blogActiveIndex is the last one, then we show the last 3 and the 1st one*/
                   if (index === 0) {
                     return (
                       <>
-                        <PaginationButton index={index} activeIndex={activeIndex} onLoadMore={onLoadMore} />
+                        <PaginationButton index={index} activeIndex={blogActiveIndex} onLoadMore={onLoadMore} />
                         <button className='cursor-default'>...</button>
                       </>
                     )
                   }
                   if (index > noOfPages - 1 - 3) {
                     return (
-                      <PaginationButton index={index} activeIndex={activeIndex} onLoadMore={onLoadMore} />
+                      <PaginationButton index={index} activeIndex={blogActiveIndex} onLoadMore={onLoadMore} />
                     )
                   }
-                } else { /*If activeIndex is somewhere in between 1st and last, then we show one forward and one backward of the activeIndex and 1st and last*/
+                } else { /*If blogActiveIndex is somewhere in between 1st and last, then we show one forward and one backward of the blogActiveIndex and 1st and last*/
                   if (index === 0) {
                     return (
                       <>
-                        <PaginationButton index={index} activeIndex={activeIndex} onLoadMore={onLoadMore} />
-                        {activeIndex! <= RANGE_FORWARD_BACKWARD + 1 ? '' : <button className='cursor-default'>...</button>}
+                        <PaginationButton index={index} activeIndex={blogActiveIndex} onLoadMore={onLoadMore} />
+                        {blogActiveIndex! <= RANGE_FORWARD_BACKWARD + 1 ? '' : <button className='cursor-default'>...</button>}
                       </>
                     )
                   }
                   // Show one forward and one backward (If want to show 2 forward and backward, add two more conditions with -2 and +2)
                   if (index > 0 && index < noOfPages - 1) {
-                    if (index >= activeIndex! - RANGE_FORWARD_BACKWARD && index <= activeIndex! + RANGE_FORWARD_BACKWARD) {
-                    // if (index === activeIndex || index === activeIndex - 1 || index === activeIndex + 1) {
+                    if (index >= blogActiveIndex! - RANGE_FORWARD_BACKWARD && index <= blogActiveIndex! + RANGE_FORWARD_BACKWARD) {
+                    // if (index === blogActiveIndex || index === blogActiveIndex - 1 || index === blogActiveIndex + 1) {
                       return (
-                        <PaginationButton index={index} activeIndex={activeIndex} onLoadMore={onLoadMore} />
+                        <PaginationButton index={index} activeIndex={blogActiveIndex} onLoadMore={onLoadMore} />
                       )
                     }
                   }
                   if (index === noOfPages - 1) {
                     return (
                       <>
-                        {activeIndex! >= noOfPages - 1 - RANGE_FORWARD_BACKWARD - 1 ? '' : <button className='cursor-default'>...</button>}
-                        <PaginationButton index={index} activeIndex={activeIndex} onLoadMore={onLoadMore} />
+                        {blogActiveIndex! >= noOfPages - 1 - RANGE_FORWARD_BACKWARD - 1 ? '' : <button className='cursor-default'>...</button>}
+                        <PaginationButton index={index} activeIndex={blogActiveIndex} onLoadMore={onLoadMore} />
                       </>
                     )
                   }
                 }
               }
             })}
-            <button disabled={activeIndex === noOfPages - 1} onClick={() => onLoadMore('next')} className={`${activeIndex === noOfPages - 1 ? 'cursor-default opacity-25' : ''} w-[45px] h-[45px] border border-gray-300 rounded-full shadow-xl`} >
+            <button disabled={blogActiveIndex === noOfPages - 1} onClick={() => onLoadMore('next')} className={`${blogActiveIndex === noOfPages - 1 ? 'cursor-default opacity-25' : ''} w-[45px] h-[45px] border border-gray-300 rounded-full shadow-xl`} >
               <Image src='/assets/icons/forward.svg' className='mx-auto' alt='' width={10} height={10} />
             </button>
           </div>

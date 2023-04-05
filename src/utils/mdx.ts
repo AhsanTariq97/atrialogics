@@ -1,12 +1,11 @@
 import path from 'path'
 import fs from 'fs'
 import matter from 'gray-matter'
-import { sync } from 'glob'
 
 const articlesPath = path.join(process.cwd(), 'data/projects')
 
 export async function getSlug() {
-  const paths = sync(`${articlesPath}/*.mdx`)
+  const paths = await fs.promises.readdir(path.join(process.cwd(), 'data/projects'))
 
   return paths.map((path) => {
     // holds the paths to the directory of the article
@@ -18,27 +17,26 @@ export async function getSlug() {
   })
 }
 
-export async function getArticleFromSlug(slug) {
-    const articleDir = path.join(articlesPath, `${slug}.mdx`)
-    const source = fs.readFileSync(articleDir)
-    const { content, data } = matter(source)
-  
-    return {
-      content,
-      frontmatter: {
-        slug,
-        excerpt: data.excerpt,
-        title: data.title,
-        publishedAt: data.publishedAt,
-        ...data,
-      },
-    }
+export async function getArticleFromSlug(slug: string) {
+  const articleDir = path.join(articlesPath, `${slug}.mdx`)
+  const source = fs.readFileSync(articleDir)
+  const { content, data } = matter(source)
+
+  return {
+    content,
+    frontmatter: {
+      slug,
+      excerpt: data.excerpt,
+      title: data.title,
+      ...data,
+    },
   }
+}
 
 export async function getAllArticles() {
     const articles = fs.readdirSync(path.join(process.cwd(), 'data/projects'))
   
-    return articles.reduce((allArticles, articleSlug) => {
+    return articles.reduce<any>((allArticles, articleSlug) => {
       // get parsed data from mdx files in the "articles" dir
       const source = fs.readFileSync(
         path.join(process.cwd(), 'data/projects', articleSlug),
@@ -56,4 +54,3 @@ export async function getAllArticles() {
     }, [])
   }
   
-
