@@ -1,10 +1,10 @@
 import Head from 'next/head';
 
-import Navbar from '../components/Navbar';
-import ProjectHomePage from '../components/ProjectHomePage';
-import Footer from '../components/Footer';
+import Navbar from '../../components/Navbar';
+import ProjectHomePage from '../../components/ProjectHomePage';
+import Footer from '../../components/Footer';
 
-import { getAllArticles } from '../utils/mdx'
+import { getAllArticles } from '../../utils/mdx'
 
 
 export default function Home({ posts }: Props): JSX.Element {

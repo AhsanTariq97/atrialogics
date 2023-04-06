@@ -3,11 +3,8 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import Button from './constants/Button';
 import { useRouter } from 'next/router';
-import data from './projectData/data'
 
 const Navbar: React.FC = () => {
-
-    const navbarData = data.navbar
 
     const [scrolled, setScrolled] = useState(false);
 
@@ -45,7 +42,6 @@ const Navbar: React.FC = () => {
                     <Link href="/"><Image src='/assets/Atrialogics.png' alt="Solvers Cave Logo" width={200} height={100} /></Link>
                 </div>
                 <ul className={'hidden lg+:flex flex-row justify-center items-center space-x-8'}>
-                    {/* {navbarData.links.map((item) => <li className='px-4 py-2'><Link href={item.to}><p className='text-base font-normal tracking-wide'>{item.label}</p></Link></li> )} */}
                     <li className=' py-2 tracking-wide'><Link href="/"><p className='text-base font-normal tracking-wide'>Home</p></Link></li>
                     <li className=' py-2 tracking-wide'><Link href="" onClick={(event) => {event.preventDefault();smoothScrollTo('services');}}><p className='text-base font-normal tracking-wide'>Services</p></Link></li>
                     <li className=' py-2 tracking-wide'><Link href="" onClick={(event) => {event.preventDefault();smoothScrollTo('about');}}><p className='text-base font-normal tracking-wide'>About</p></Link></li>
@@ -60,7 +56,6 @@ const Navbar: React.FC = () => {
                     <Image src={toggle ? '/assets/icons/close.svg' : '/assets/icons/menu.svg'} className='cursor-pointer brightness-0' width={25} height={25} alt='menu toggle' onClick={() => setToggle(prev => !prev)} />
                     <div className={`${toggle ? 'flex' : 'hidden'} absolute top-0 left-0 bg-white w-full h-screen text-center rounded-lg`}>
                         <ul className='flex flex-col justify-center items-center w-full h-full text-black space-y-8'>
-                            {/* {navbarData.links.map((item) => <li className='px-4 py-2'><Link href={item.to}><p className='text-base font-normal tracking-wide'>{item.label}</p></Link></li> )} */}
                             <li className='px-4 py-2 tracking-wide'><Link onClick={() => setToggle(prev => !prev)} href="/"><p className='text-base font-normal tracking-wide'>Home</p></Link></li>
                             <li className='px-4 py-2 tracking-wide'><Link href="" onClick={(event) => {event.preventDefault();smoothScrollTo('services');setToggle(prev => !prev);}}><p className='text-base font-normal tracking-wide'>Services</p></Link></li>
                             <li className='px-4 py-2 tracking-wide'><Link href="" onClick={(event) => {event.preventDefault();smoothScrollTo('about');setToggle(prev => !prev);}}><p className='text-base font-normal tracking-wide'>About</p></Link></li>

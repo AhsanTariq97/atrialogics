@@ -17,8 +17,8 @@ const TechStackCard = ({ tech }: PropsTechStack) => {
             <Image src='/assets/icons/tick.svg' className='min-w-[30px] h-[30px]' alt='' width={30} height={30} />
         </div>
         <div className='flex justify-between items-center pr-4'>
-            <div>
-                <h5 className='text-xs'>{tech.name}</h5>
+            <div className='flex flex-col justify-between items-start space-y-1'>
+                <h5 className='text-xs font-semibold'>{tech.name}</h5>
                 <p className='text-[10px]'>{tech.description}</p>
             </div>
             <Image src={`/assets/tech/${tech.icon}.svg`} className='w-[40px] h-[40px]' width={40} height={40} alt='' />

@@ -1,8 +1,8 @@
 import Head from 'next/head';
 
-import Navbar from '../components/Navbar';
-import BlogHomePage from '../components/BlogHomePage';
-import Footer from '../components/Footer';
+import Navbar from '../../components/Navbar';
+import BlogHomePage from '../../components/BlogHomePage';
+import Footer from '../../components/Footer';
 
 export default function Home(): JSX.Element {
 
