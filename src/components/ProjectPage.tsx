@@ -33,10 +33,10 @@ const ProjectPage = ({frontmatter, source}: Props) => {
                 <h1 className='text-2xl font-bold'>Hello that my project Detail</h1>
                 <p className='text-base text-[#6E7477]'>Since 1999, millions of people have expressed themselves on Blogger. From detailed posts about almost every apple variety you could ever imagine to a blog dedicated to the art of blogging itself, the ability to easily share, publish and express oneself on the web is at the core of Blogger’s mission.</p>
             </div>
-            <div className='flex justify-center items-center w-full'>
+            <div data-aos='fade-right' className='flex justify-center items-center w-full'>
                 <iframe className='lg:w-[910.4px] lg:h-[500px]' width="550.4" height="370" src={frontmatter.videoSrc}></iframe> 
             </div>
-            <div className='flex flex-col justify-between items-start space-y-8 w-full'>
+            <div data-aos='fade-up' className='flex flex-col justify-between items-start space-y-8 w-full'>
                 <h1 className='text-2xl md:text-3xl font-bold'>The tech stack we used:</h1>
                 <div className='flex flex-col lg:flex-row justify-between items-start space-y-8 lg:space-y-0 lg:space-x-8 w-full'>
                     <div className='space-y-2'>

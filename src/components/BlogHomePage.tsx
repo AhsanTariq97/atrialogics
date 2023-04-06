@@ -78,8 +78,8 @@ export default function BlogHomePage(): JSX.Element {
   const totalPosts = data.posts.pageInfo.offsetPagination.total
   const noOfPages = Math.ceil(totalPosts / BATCH_SIZE)
 
-  // Loading more posts as user clicks on pagination
-  const onLoadMore = (index: string | number) => {
+  // Setting offset value based on pagination
+  const paginateFn = (index: string | number) => {
     let offset: number;
     
     if (index === 'prev') {
@@ -137,27 +137,27 @@ export default function BlogHomePage(): JSX.Element {
               })}
           </ul>
           <div className='flex justify-between items-center space-x-1 xs:space-x-2 md:space-x-4 text-sm xs:text-base sm:text-lg'>
-            <button disabled={blogActiveIndex === 0} onClick={() => onLoadMore('prev')} className={`${blogActiveIndex === 0 ? 'cursor-default opacity-25' : ''} w-[45px] h-[45px] border border-gray-300 rounded-full shadow-xl`} >
+            <button disabled={blogActiveIndex === 0} onClick={() => paginateFn('prev')} className={`${blogActiveIndex === 0 ? 'cursor-default opacity-25' : ''} w-[45px] h-[45px] border border-gray-300 rounded-full shadow-xl`} >
               <Image src='/assets/icons/backward.svg' className='mx-auto' alt='' width={10} height={10} />
             </button>
             {Array.from({length: noOfPages}, (_,index) => {
               //For less than 5 pages, show all pagination. If greater than 5, we go to else condition
               if (noOfPages <= 5 ) {
                 return (
-                  <PaginationButton index={index} activeIndex={blogActiveIndex} onLoadMore={onLoadMore} />
+                  <PaginationButton index={index} activeIndex={blogActiveIndex} paginateFn={paginateFn} />
                 )
               } else {
                 if (blogActiveIndex === 0) { /*If blogActiveIndex is 0, then we show the first 3 and then the last one*/
                   if (index < 3) {
                     return (
-                      <PaginationButton index={index} activeIndex={blogActiveIndex} onLoadMore={onLoadMore} />
+                      <PaginationButton index={index} activeIndex={blogActiveIndex} paginateFn={paginateFn} />
                     )
                   }
                   if (index === noOfPages -1) {
                     return (
                       <>
                         <button className='cursor-default'>...</button>
-                        <PaginationButton index={index} activeIndex={blogActiveIndex} onLoadMore={onLoadMore} />
+                        <PaginationButton index={index} activeIndex={blogActiveIndex} paginateFn={paginateFn} />
                       </>
                     )
                   }
@@ -165,21 +165,21 @@ export default function BlogHomePage(): JSX.Element {
                   if (index === 0) {
                     return (
                       <>
-                        <PaginationButton index={index} activeIndex={blogActiveIndex} onLoadMore={onLoadMore} />
+                        <PaginationButton index={index} activeIndex={blogActiveIndex} paginateFn={paginateFn} />
                         <button className='cursor-default'>...</button>
                       </>
                     )
                   }
                   if (index > noOfPages - 1 - 3) {
                     return (
-                      <PaginationButton index={index} activeIndex={blogActiveIndex} onLoadMore={onLoadMore} />
+                      <PaginationButton index={index} activeIndex={blogActiveIndex} paginateFn={paginateFn} />
                     )
                   }
                 } else { /*If blogActiveIndex is somewhere in between 1st and last, then we show one forward and one backward of the blogActiveIndex and 1st and last*/
                   if (index === 0) {
                     return (
                       <>
-                        <PaginationButton index={index} activeIndex={blogActiveIndex} onLoadMore={onLoadMore} />
+                        <PaginationButton index={index} activeIndex={blogActiveIndex} paginateFn={paginateFn} />
                         {blogActiveIndex! <= RANGE_FORWARD_BACKWARD + 1 ? '' : <button className='cursor-default'>...</button>}
                       </>
                     )
@@ -189,7 +189,7 @@ export default function BlogHomePage(): JSX.Element {
                     if (index >= blogActiveIndex! - RANGE_FORWARD_BACKWARD && index <= blogActiveIndex! + RANGE_FORWARD_BACKWARD) {
                     // if (index === blogActiveIndex || index === blogActiveIndex - 1 || index === blogActiveIndex + 1) {
                       return (
-                        <PaginationButton index={index} activeIndex={blogActiveIndex} onLoadMore={onLoadMore} />
+                        <PaginationButton index={index} activeIndex={blogActiveIndex} paginateFn={paginateFn} />
                       )
                     }
                   }
@@ -197,14 +197,14 @@ export default function BlogHomePage(): JSX.Element {
                     return (
                       <>
                         {blogActiveIndex! >= noOfPages - 1 - RANGE_FORWARD_BACKWARD - 1 ? '' : <button className='cursor-default'>...</button>}
-                        <PaginationButton index={index} activeIndex={blogActiveIndex} onLoadMore={onLoadMore} />
+                        <PaginationButton index={index} activeIndex={blogActiveIndex} paginateFn={paginateFn} />
                       </>
                     )
                   }
                 }
               }
             })}
-            <button disabled={blogActiveIndex === noOfPages - 1} onClick={() => onLoadMore('next')} className={`${blogActiveIndex === noOfPages - 1 ? 'cursor-default opacity-25' : ''} w-[45px] h-[45px] border border-gray-300 rounded-full shadow-xl`} >
+            <button disabled={blogActiveIndex === noOfPages - 1} onClick={() => paginateFn('next')} className={`${blogActiveIndex === noOfPages - 1 ? 'cursor-default opacity-25' : ''} w-[45px] h-[45px] border border-gray-300 rounded-full shadow-xl`} >
               <Image src='/assets/icons/forward.svg' className='mx-auto' alt='' width={10} height={10} />
             </button>
           </div>
