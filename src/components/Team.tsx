@@ -23,7 +23,7 @@ const Team: React.FC = () => {
               <TeamCard image='/assets/team/avatar-1.png' name='Basit Maqsood' post='Co-Founder, CTO' linkedin='https://www.linkedin.com/in/basitmaqsood/' twitter='https://twitter.com/MBasitMaqsood1' skype='skype:malikbasitmaqsood_1?chat' />
               <TeamCard image='/assets/team/avatar-3.jpg' name='Muhammad Ali' post='Growth Hacker' linkedin='https://www.linkedin.com/in/basitmaqsood/' twitter='https://twitter.com/MBasitMaqsood1' skype='skype:malikbasitmaqsood_1?chat' />
           </div>
-          <Link data-aos='fade-up' href='#contact' ><Button type='text' text='Contact Us' /></Link>
+          <Link data-aos='fade-up' className='pt-8' href='#contact' ><Button type='text' text='Contact Us' /></Link>
       </div>
     </div>
   )

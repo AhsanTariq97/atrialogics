@@ -22,10 +22,10 @@ const Contact: React.FC = () => {
               <h1 className='text-3xl font-bold tracking-wide'>Contact Us</h1>
               <ContactDetails data-aos='fade-up' textColor='text-[#6E7477]' iconColor='#1F3A6E' />
               <div data-aos='fade-up' className='flex justify-between items-center space-x-4'>
-                  <Link href='https://www.facebook.com/atrialogics'><div className='rounded-full text-[#1F3A6E] bg-[#E4E6E7] p-2'><FaFacebookF size={25} /></div></Link>
-                  <Link href='https://www.instagram.com/atrialogics'><div className='rounded-full text-[#1F3A6E] bg-[#E4E6E7] p-2'><AiFillInstagram size={25} /></div></Link>
-                  <Link href='https://atrialogics.io/#'><div className='rounded-full text-[#1F3A6E] bg-[#E4E6E7] p-2'><FaTwitter size={25} /></div></Link>
-                  <Link href='https://atrialogics.io/#'><div className='rounded-full text-[#1F3A6E] bg-[#E4E6E7] p-2'><FaLinkedinIn size={25} /></div></Link>
+                  <Link href='https://www.facebook.com/atrialogics' target='_blank'><div className='rounded-full text-[#1F3A6E] bg-[#E4E6E7] p-2'><FaFacebookF size={25} /></div></Link>
+                  <Link href='https://www.instagram.com/atrialogics' target='_blank'><div className='rounded-full text-[#1F3A6E] bg-[#E4E6E7] p-2'><AiFillInstagram size={25} /></div></Link>
+                  <Link href='https://atrialogics.io/#' target='_blank'><div className='rounded-full text-[#1F3A6E] bg-[#E4E6E7] p-2'><FaTwitter size={25} /></div></Link>
+                  <Link href='https://atrialogics.io/#' target='_blank'><div className='rounded-full text-[#1F3A6E] bg-[#E4E6E7] p-2'><FaLinkedinIn size={25} /></div></Link>
               </div>
           </div>
           <div data-aos='fade-up' className='mt-16 max-w-lg w-full lg:mt-0'>

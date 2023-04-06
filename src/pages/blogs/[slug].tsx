@@ -71,7 +71,7 @@ export default function Blogs({ post }: Props): JSX.Element {
                 <link href="https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@200;300;400;500;600;700;800;900&display=swap"rel="stylesheet"/>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <body className='overflow-x-hidden'>
+            <main className='overflow-x-hidden'>
                 <header>
                 <Navbar />
                 <div className='py-[50px]'></div>
@@ -91,7 +91,7 @@ export default function Blogs({ post }: Props): JSX.Element {
                 <footer className='w-full'>
                     <Footer />
                 </footer>
-            </body>
+            </main>
         </>
     )
 }

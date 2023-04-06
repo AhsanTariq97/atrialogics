@@ -52,10 +52,10 @@ const Footer: React.FC = () => {
             <div data-aos='fade-up' className='flex flex-col justify-between items-center space-y-4'>
                 <h2 className='text-lg font-medium tracking-wide text-[#E5E7EB]'>FOLLOW US</h2>
                 <div className='flex justify-between items-center space-x-4 md:space-x-2'>
-                    <Link href='https://www.facebook.com/atrialogics'><div className='rounded-full text-[#252728] bg-[#E4E6E7] p-2'><FaFacebookF size={25} /></div></Link>
-                    <Link href='https://www.instagram.com/atrialogics'><div className='rounded-full text-[#252728] bg-[#E4E6E7] p-2'><AiFillInstagram size={25} /></div></Link>
-                    <Link href='https://atrialogics.io/#'><div className='rounded-full text-[#252728] bg-[#E4E6E7] p-2'><FaTwitter size={25} /></div></Link>
-                    <Link href='https://atrialogics.io/#'><div className='rounded-full text-[#252728] bg-[#E4E6E7] p-2'><FaLinkedinIn size={25} /></div></Link>
+                    <Link href='https://www.facebook.com/atrialogics' target='_blank'><div className='rounded-full text-[#252728] bg-[#E4E6E7] p-2'><FaFacebookF size={25} /></div></Link>
+                    <Link href='https://www.instagram.com/atrialogics' target='_blank'><div className='rounded-full text-[#252728] bg-[#E4E6E7] p-2'><AiFillInstagram size={25} /></div></Link>
+                    <Link href='https://atrialogics.io/#' target='_blank'><div className='rounded-full text-[#252728] bg-[#E4E6E7] p-2'><FaTwitter size={25} /></div></Link>
+                    <Link href='https://atrialogics.io/#' target='_blank'><div className='rounded-full text-[#252728] bg-[#E4E6E7] p-2'><FaLinkedinIn size={25} /></div></Link>
                 </div>
             </div>
             <div data-aos='fade-up' className='flex flex-col justify-between items-center lg:items-start space-y-4'>

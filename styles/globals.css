@@ -17,8 +17,14 @@ body {
 .shadow-button {
     box-shadow: rgba(113, 135, 162, 0.14) 0px 24px 32px;
 }
+.shadow-tech-card {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 .slanted-cut {
     clip-path: circle(40%);
+}
+.slanted-tech-card {
+    clip-path: polygon(0 0, 100% 0, 60% 100%, 0 100%);
 }
 .h-tag-style h1 {
     font-size: 2.25rem;
@@ -47,7 +53,7 @@ body {
 
 @media screen and (min-width: 768px) {
     .slanted-cut {
-        clip-path: polygon(50% 0, 100% 60%, 50% 100%, 0 60%);
+        clip-path: polygon(50% 0, 100% 40%, 50% 100%, 0 40%);
     }
     .arrow {
         animation-duration: 0.5s;
