@@ -50,6 +50,11 @@ body {
     font-size: 0.75rem;
     font-weight: 200;
 }
+.bg-laptop {
+    background: url('../public/assets/laptop-background.png') center center no-repeat;
+    background-size: contain;
+    /* padding: 11.9% 15.5% 14.8%; */
+}
 
 @media screen and (min-width: 768px) {
     .slanted-cut {

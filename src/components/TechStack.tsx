@@ -19,7 +19,7 @@ const TechStack = ({ data }: Props) => {
         <h3 className='text-xl text-[#7187A2]'>{data.title}</h3>
         <div className='flex flex-col justify-between items-center space-y-4'>
         {data.stack.map((tech: { name: string; icon: string; description: string; }) => (
-            <TechStackCard tech={tech}/>
+            <TechStackCard key={tech.name} tech={tech}/>
         ))
         }
         </div>
