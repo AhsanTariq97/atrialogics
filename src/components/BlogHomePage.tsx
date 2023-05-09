@@ -17,14 +17,14 @@ export default function BlogHomePage(): JSX.Element {
   // 1. For highlighting the current page in pagination
   // 2. This value is stored in session storage whenever user reloads or opens a blog, so that when user navigates back they land onto the same page (pagination) user left
   // 3. You can use queries for that too, by passing queries in url as we navigate to the new page. 
-  //    So we will pass blogActiveIndex to the individual blog page, then pass it back from there when we go back to the blog home page. 
+  //    We will pass blogActiveIndex to the individual blog page, then pass it back from there when we go back to the blog home page. 
   //    We also have to add popstate event handler so that we can pass currentIndex in case user press browser back button.
   //    But the problem in this method was that we can't store the userIndex value when user reloads the page. Forcing us to go to the 1st page. 
   const [blogActiveIndex, setBlogActiveIndex] = useState<number | null>(null);
 
   // Accessing the stored value from session storage
   useEffect(() => {
-    const storedState = sessionStorage.getItem("myblogActiveIndex");
+    const storedState = sessionStorage.getItem("blogActiveIndex");
     if (storedState === null) {
       setBlogActiveIndex(0)
     } else {
@@ -34,13 +34,13 @@ export default function BlogHomePage(): JSX.Element {
 
   // Storing value on clicking a blog link
   const handleClick = (): void => {
-    sessionStorage.setItem("myblogActiveIndex", JSON.stringify(blogActiveIndex)); 
+    sessionStorage.setItem("blogActiveIndex", JSON.stringify(blogActiveIndex)); 
   }
 
   //Storing value on reloading the page
   useEffect(() => {
     const handleBeforeUnload = (): void => {
-      sessionStorage.setItem('myblogActiveIndex', JSON.stringify(blogActiveIndex))
+      sessionStorage.setItem('blogActiveIndex', JSON.stringify(blogActiveIndex))
     }
     window.addEventListener('beforeunload', handleBeforeUnload)
     return () => {
@@ -48,9 +48,13 @@ export default function BlogHomePage(): JSX.Element {
     }
   }, [blogActiveIndex])
 
+  
   // Fetching initial posts depending on the active index
   const { data, loading, error, fetchMore } = useQuery<GetWordPressPostsData, GetWordPressPostsVariables>(GET_POSTS, {
-      variables: {size: BATCH_SIZE, offset: blogActiveIndex ? blogActiveIndex * BATCH_SIZE : 0 },
+      variables: {
+        size: BATCH_SIZE, 
+        offset: blogActiveIndex ? blogActiveIndex * BATCH_SIZE : 0,
+      },
       notifyOnNetworkStatusChange: true,
   }) 
 
@@ -59,7 +63,6 @@ export default function BlogHomePage(): JSX.Element {
       return <p>Error occured</p>
   }
   if (!data && loading) {
-      // return <p>Loading...</p>
       return (
         <div role="status" className='h-[75vh] flex justify-center items-center'>
           <svg aria-hidden="true" className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-[#7187A2]" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -93,13 +96,13 @@ export default function BlogHomePage(): JSX.Element {
       offset = Number(index) * BATCH_SIZE;
     }
     
-      fetchMore({
-        variables: { offset: offset },
-        updateQuery: (previousResult, { fetchMoreResult }) => {
-          if (!fetchMoreResult) return previousResult;
-          return fetchMoreResult;
-        },
-      });
+    fetchMore({
+      variables: { offset: offset },
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return previousResult;
+        return fetchMoreResult;
+      },
+    });
   };
 
   // Determining how long it will take to read the blog
@@ -112,7 +115,7 @@ export default function BlogHomePage(): JSX.Element {
   return (
       <div className='flex flex-col justify-between items-center space-y-8 py-8 w-[90%] mx-auto'>
       <h2 data-aos='fade-down' className='text-2xl font-bold md:text-3xl py-4 [text-shadow:_0_10px_20px_rgb(0_0_0_/_20%)]'>Blogs</h2>
-          <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+          <ul className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'>
               {posts.map((post) => {
                   const { slug, title, excerpt, content, featuredImage, author } = post;
 
@@ -122,12 +125,12 @@ export default function BlogHomePage(): JSX.Element {
                     newExcerpt = excerpt.split(' ').slice(0, 20).join(' ').concat('...')
                   }
                   return (
-                      <li data-aos='fade-up' key={slug} className='flex flex-col justify-start items-start w-full max-w-xl' >
+                      <li data-aos='fade-up' key={slug} className='flex flex-col items-start justify-start w-full max-w-xl' >
                         <Link href={`/blogs/${slug}`} onClick={handleClick} >{featuredImage ? <Image src={featuredImage.node.sourceUrl} className='rounded-3xl md:max-h-[250px] md:min-h-[250px]' alt='' width={600} height={200} /> : <Image src='/assets/welcome.jpg' className='rounded-3xl md:max-h-[250px] md:min-h-[250px]' alt='' width={600} height={200} /> }</Link>
-                        <div className='flex flex-col justify-between items-start space-y-4 py-4'>
+                        <div className='flex flex-col items-start justify-between py-4 space-y-4'>
                             <Link href={`/blogs/${slug}`} onClick={handleClick} ><h2 className='text-lg font-semibold text-[#1F3A6E] md:text-lg'>{title}</h2></Link>
                             <div dangerouslySetInnerHTML={{__html: newExcerpt}} className='text-[#6E7477] text-sm' />
-                            <div className='flex justify-start items-center space-x-16'>
+                            <div className='flex items-center justify-start space-x-16'>
                                 <h3 className='text-sm font-medium'>{author.node.name}</h3>
                                 {content && <p className='text-sm font-medium'>{`${minRead(content)} min read`}</p>}
                             </div>
@@ -136,7 +139,7 @@ export default function BlogHomePage(): JSX.Element {
                   )
               })}
           </ul>
-          <div className='flex justify-between items-center space-x-1 xs:space-x-2 md:space-x-4 text-sm xs:text-base sm:text-lg'>
+          <div className='flex items-center justify-between space-x-1 text-sm xs:space-x-2 md:space-x-4 xs:text-base sm:text-lg'>
             <button disabled={blogActiveIndex === 0} onClick={() => paginateFn('prev')} className={`${blogActiveIndex === 0 ? 'cursor-default opacity-25' : ''} w-[45px] h-[45px] border border-gray-300 rounded-full shadow-xl`} >
               <Image src='/assets/icons/backward.svg' className='mx-auto' alt='' width={10} height={10} />
             </button>
@@ -184,10 +187,9 @@ export default function BlogHomePage(): JSX.Element {
                       </>
                     )
                   }
-                  // Show one forward and one backward (If want to show 2 forward and backward, add two more conditions with -2 and +2)
+                  // Shows forward and backward of blogActiveIndex based on RANGE_FORWARD_BACKWARD value
                   if (index > 0 && index < noOfPages - 1) {
                     if (index >= blogActiveIndex! - RANGE_FORWARD_BACKWARD && index <= blogActiveIndex! + RANGE_FORWARD_BACKWARD) {
-                    // if (index === blogActiveIndex || index === blogActiveIndex - 1 || index === blogActiveIndex + 1) {
                       return (
                         <PaginationButton index={index} activeIndex={blogActiveIndex} paginateFn={paginateFn} />
                       )

@@ -14,7 +14,16 @@ module.exports = {
       'xl': '1280px',
       '2xl': '1536px',
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        giga: ['var(--font-lexend-giga)'],
+        IBM: ['var(--font-IBM)'],
+        roboto: ['var(--font-roboto)'],
+        raleway: ['var(--font-raleway)'],
+      },
+    },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }

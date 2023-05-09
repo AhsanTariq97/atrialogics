@@ -63,7 +63,7 @@ const ProjectHomePage = ({ posts }: Props): JSX.Element => {
   return (
     <div className='flex flex-col justify-between items-center space-y-8 py-8 w-[90%] mx-auto'>
       <h2 data-aos='fade-down' className='text-2xl font-bold sm:text-3xl py-4 [text-shadow:_0_10px_20px_rgb(0_0_0_/_20%)]'>Portfolio</h2>
-      <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+      <ul className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'>
         {posts && posts.map((frontMatter, index: number) => {
           if (index >= BATCH_SIZE * projectActiveIndex! && index < BATCH_SIZE * (projectActiveIndex! + 1)) {
             let newExcerpt = frontMatter.excerpt 
@@ -71,9 +71,9 @@ const ProjectHomePage = ({ posts }: Props): JSX.Element => {
               newExcerpt = frontMatter.excerpt.split(' ').slice(0, 25).join(' ').concat('...')
             }
             return (
-              <li data-aos='fade-up' key={frontMatter.slug} className='flex flex-col justify-start items-start w-full max-w-xl' >
+              <li data-aos='fade-up' key={frontMatter.slug} className='flex flex-col items-start justify-start w-full max-w-xl' >
                 <Link href={`/portfolio/${frontMatter.slug}`} onClick={handleClick} >{frontMatter.featureImage ? <Image src={frontMatter.featureImage} className='rounded-3xl md:max-h-[184.5px] md:min-h-[184.5px]' alt='' width={600} height={200} /> : <Image src='/assets/welcome.jpg' className='rounded-3xl md:max-h-[184.5px] md:min-h-[184.5px]' alt='' width={600} height={200} /> }</Link>
-                <div className='flex flex-col justify-between items-start space-y-4 py-4'>
+                <div className='flex flex-col items-start justify-between py-4 space-y-4'>
                     <Link href={`/portfolio/${frontMatter.slug}`} onClick={handleClick} ><h2 className='text-lg font-semibold text-[#1F3A6E] md:text-lg'>{frontMatter.title}</h2></Link>
                     <div dangerouslySetInnerHTML={{__html: newExcerpt}} className='text-[#6E7477] text-sm' />
                 </div>
@@ -83,7 +83,7 @@ const ProjectHomePage = ({ posts }: Props): JSX.Element => {
         })}
       </ul>
       
-      <div className='flex justify-between items-center space-x-1 xs:space-x-3 md:space-x-6 text-sm xs:text-base sm:text-lg'>
+      <div className='flex items-center justify-between space-x-1 text-sm xs:space-x-3 md:space-x-6 xs:text-base sm:text-lg'>
         <button disabled={projectActiveIndex === 0} onClick={() => paginateFn('prev')} className={`${projectActiveIndex === 0 ? 'cursor-default opacity-25' : ''} w-[45px] h-[45px] border border-gray-300 rounded-full shadow-xl`} >
           <Image src='/assets/icons/backward.svg' className='mx-auto' alt='' width={10} height={10} />
         </button>
@@ -131,10 +131,9 @@ const ProjectHomePage = ({ posts }: Props): JSX.Element => {
                   </>
                 )
               }
-              // Show one forward and one backward (If want to show 2 forward and backward, add two more conditions with -2 and +2)
+              // Shows forward and backward of blogActiveIndex based on RANGE_FORWARD_BACKWARD value
               if (index > 0 && index < noOfPages - 1) {
                 if (index >= projectActiveIndex! - RANGE_FORWARD_BACKWARD && index <= projectActiveIndex! + RANGE_FORWARD_BACKWARD) {
-                // if (index === projectActiveIndex || index === projectActiveIndex - 1 || index === projectActiveIndex + 1) {
                   return (
                     <PaginationButton index={index} activeIndex={projectActiveIndex} paginateFn={paginateFn} />
                   )

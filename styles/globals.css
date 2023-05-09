@@ -26,30 +26,6 @@ body {
 .slanted-tech-card {
     clip-path: polygon(0 0, 100% 0, 60% 100%, 0 100%);
 }
-.h-tag-style h1 {
-    font-size: 2.25rem;
-    font-weight: 700;
-}
-.h-tag-style h2 {
-    font-size: 1.75rem;
-    font-weight: 600;
-}
-.h-tag-style h3 {
-    font-size: 1.25rem;
-    font-weight: 500;
-}
-.h-tag-style h4 {
-    font-size: 1rem;
-    font-weight: 400;
-}
-.h-tag-style h5 {
-    font-size: 0.875rem;
-    font-weight: 300;
-}
-.h-tag-style h6 {
-    font-size: 0.75rem;
-    font-weight: 200;
-}
 .bg-laptop {
     background: url('../public/assets/laptop-background.png') center center no-repeat;
     background-size: contain;
