@@ -103,7 +103,7 @@ const BlogPage: React.FC<Props> = ({ headings, processedContent }) => {
         <div className='relative flex flex-row items-start justify-between'>
           <div ref={myContentRef} className={`w-full text-left ${fixSidebarTop ? 'md:pr-[300px]' : ''}`}>
             <div data-aos='fade-up' dangerouslySetInnerHTML={{ __html: processedContent }}
-            className='prose lg:prose-lg prose-a:text-blue-400 hover:prose-a:text-blue-600 prose-a:no-underline prose-headings:underline prose-figcaption:text-center prose-img:rounded-2xl'
+            className='min-w-full prose lg:prose-lg prose-a:text-blue-400 hover:prose-a:text-blue-600 prose-a:no-underline prose-headings:underline prose-figcaption:text-center prose-img:rounded-2xl'
             />
           </div>
 
