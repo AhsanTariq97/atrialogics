@@ -56,7 +56,7 @@ export default function Blogs({ post }: Props): JSX.Element {
                     <Navbar />
                 </header>
                 <main className='max-w-screen-xl mx-auto'>
-                    <div className='flex flex-col items-start justify-between px-2 pb-16 space-y-16 xs:px-4 md:px-8'>
+                    <div className='flex flex-col items-start justify-between px-6 pb-16 space-y-16 md:px-8'>
                         <Image data-aos='fade-up' className='rounded-3xl self-center md:h-[80vh]' src={post.featuredImage ? post.featuredImage.node.sourceUrl : '/assets/ecommerce.svg'} width={800} height={500} alt='' />
                         <h1 data-aos='fade-up' className='w-full text-4xl font-bold text-left'>{post.title}</h1>
                         <div className='flex items-center justify-start space-x-16'>
