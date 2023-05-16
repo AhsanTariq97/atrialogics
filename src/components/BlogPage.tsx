@@ -102,11 +102,11 @@ const BlogPage: React.FC<Props> = ({ headings, processedContent }) => {
       
     const renderContent = () => {
         // Split the content based on the code sections
-        const sections = processedContent.split(/<pre class="wp-block-code"><code>(.*?)<\/code><\/pre>/s);
+        const sections = processedContent?.split(/<pre class="wp-block-code"><code>(.*?)<\/code><\/pre>/s);
 
         return (
             <div>
-                {sections.map((section: any, index: number) => {
+                {sections?.map((section: any, index: number) => {
                     if (index % 2 === 0) {
                         // This is a regular content section
                         return <div key={index} dangerouslySetInnerHTML={{ __html: section }} />
@@ -122,8 +122,6 @@ const BlogPage: React.FC<Props> = ({ headings, processedContent }) => {
         )
     }
     
-    console.log(processedContent)
-
     const progressBarRef = useRef<HTMLDivElement>(null);
           
     return (
