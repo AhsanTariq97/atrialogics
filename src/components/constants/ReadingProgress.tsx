@@ -13,10 +13,9 @@ const ReadingProgress = ({ progressBarRef }: {
 
         const windowsHeight = window.innerHeight
 
-        const contentBounds = element?.getBoundingClientRect();
-        const contentHeight = contentBounds.height
-        const contentTop = contentBounds.top
-        const contentBottom = contentBounds.bottom
+        const contentHeight = element?.getBoundingClientRect().height
+        const contentTop = element?.getBoundingClientRect().top
+        const contentBottom = element?.getBoundingClientRect().bottom
 
         const windowScroll = window.scrollY || 0;
 
@@ -26,8 +25,7 @@ const ReadingProgress = ({ progressBarRef }: {
         if (contentBottom <= windowsHeight ) {
             return setReadingProgress(100);
         }
-        console.log('windowScroll: ', windowScroll)
-        setReadingProgress(((windowScroll  - 350) / contentHeight) * 100);
+        setReadingProgress(((windowScroll  - 245) / contentHeight) * 100);
     };
       
     useEffect(() => {

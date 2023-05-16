@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import {TbClipboardText} from 'react-icons/tb'
 
 const CopyCode = ({ code }: {code: any}) => {
   const [copied, setCopied] = useState(false);
@@ -15,8 +16,8 @@ const CopyCode = ({ code }: {code: any}) => {
     <>
       <pre className='relative wp-block-code'>
         <code>{code}</code>
-        <button className={`absolute top-2 right-4 ${copied && 'text-green-400'}`} onClick={() => handleCopy(code)}>
-            {copied ? 'Copied!' : 'Copy Code'}
+        <button className={`absolute top-2 right-4`} onClick={() => handleCopy(code)}>
+            {copied ? 'Copied!' : <TbClipboardText size={25} />}
         </button>
       </pre>
     </>

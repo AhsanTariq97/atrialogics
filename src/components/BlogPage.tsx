@@ -10,6 +10,7 @@ import CopyCode from './constants/CopyCode';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import ReadingProgress from './constants/ReadingProgress';
+import ImageLightbox from './constants/ImageLightbox';
 
 type Props = {
   headings: Element[];
@@ -90,26 +91,35 @@ const BlogPage: React.FC<Props> = ({ headings, processedContent }) => {
     };
   });
   
-  // Scroll to the heading but without href id which modifies the URL too.
-  // const smoothScrollTo = (index: number) => {
-    //   const id = `section${index + 1}`
-    //   const element = document.getElementById(id);
-    //   element!.scrollIntoView({
-      //       block: 'start',
-      //       behavior: 'smooth' // smooth scroll
-      //   })
-      // };
-      
     const renderContent = () => {
         // Split the content based on the code sections
         const sections = processedContent?.split(/<pre class="wp-block-code"><code>(.*?)<\/code><\/pre>/s);
-
+        
         return (
             <div>
                 {sections?.map((section: any, index: number) => {
-                    if (index % 2 === 0) {
+                    if (index % 2 === 0 && !section.includes('<figure class="wp-block-image')) {
                         // This is a regular content section
                         return <div key={index} dangerouslySetInnerHTML={{ __html: section }} />
+                    } else if (index % 2 === 0 && section.includes('<figure class="wp-block-image')) {
+                        const figSections = section.split(/<figure class="wp-block-image aligncenter size-large">(.*?)<\/figure>/s)
+                        console.log(figSections)
+                        return (
+                            <>
+                                {figSections?.map((figSection: any, index: number) => {
+                                    if (index % 2 === 0) {
+                                    // This is a regular content section
+                                        return <div key={index} dangerouslySetInnerHTML={{ __html: figSection }} />
+                                    } else {
+                                        // This is a figure section
+                                        const imageUrl = figSection
+                                        return (
+                                            <ImageLightbox imageUrl={imageUrl} />
+                                        )
+                                    }
+                                })}
+                            </>
+                        )
                     } else {
                         // This is a code section
                         const code = section;
@@ -129,7 +139,7 @@ const BlogPage: React.FC<Props> = ({ headings, processedContent }) => {
         <div className='w-full max-w-screen-xl'>
             <div className='relative flex flex-row items-start justify-between'>
             <div ref={myContentRef} className={`w-full text-left ${fixSidebarTop ? 'md:pr-[300px]' : ''}`}>
-                <div ref={progressBarRef} data-aos='fade-up'
+                <div ref={progressBarRef} 
                 className='min-w-full prose lg:prose-lg prose-a:text-blue-400 hover:prose-a:text-blue-600 prose-a:no-underline prose-headings:underline prose-figcaption:text-center prose-img:rounded-2xl'
                 >
                     {renderContent()}
