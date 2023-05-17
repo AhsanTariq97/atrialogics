@@ -84,18 +84,18 @@ const GET_POSTS = gql`
 
     return (
         <div className='flex flex-col justify-between items-center space-y-8 py-8 w-[90%] mx-auto'>
-        <h2 className='text-lg font-bold md:text-2xl py-4'>Blogs</h2>
-            <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+        <h2 className='py-4 text-lg font-bold md:text-2xl'>Blog</h2>
+            <ul className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'>
                 {posts.map((post) => {
                     const { slug, title, excerpt, content, featuredImage, author } = post;
                     console.log('tect', posts)
                     return (
-                        <li key={slug} className='flex flex-col justify-start items-start w-full max-w-xl' >
-                                <Link href={`/blogs/${slug}`} >{featuredImage ? <Image src={featuredImage.node.sourceUrl} className='rounded-3xl min-h-[180px] max-h-[250px]' alt='' width={600} height={200} /> : <Image src='/assets/ecommerce.svg' className='rounded-3xl min-h-[180px] max-h-[250px]' alt='' width={600} height={200} /> }</Link>
-                                <div className='flex flex-col justify-between items-start space-y-4 py-4'>
-                                    <Link href={`/blogs/${slug}`} ><h2 className='text-lg font-semibold md:text-lg'>{title}</h2></Link>
+                        <li key={slug} className='flex flex-col items-start justify-start w-full max-w-xl' >
+                                <Link href={`/blog/${slug}`} >{featuredImage ? <Image src={featuredImage.node.sourceUrl} className='rounded-3xl min-h-[180px] max-h-[250px]' alt='' width={600} height={200} /> : <Image src='/assets/ecommerce.svg' className='rounded-3xl min-h-[180px] max-h-[250px]' alt='' width={600} height={200} /> }</Link>
+                                <div className='flex flex-col items-start justify-between py-4 space-y-4'>
+                                    <Link href={`/blog/${slug}`} ><h2 className='text-lg font-semibold md:text-lg'>{title}</h2></Link>
                                     <div dangerouslySetInnerHTML={{__html: excerpt}} className='text-[#6E7477] text-sm' />
-                                    <div className='flex justify-start items-center space-x-16'>
+                                    <div className='flex items-center justify-start space-x-16'>
                                         <h3 className='text-sm font-medium'>{author.node.name}</h3>
                                         {content && <p className='text-sm font-medium'>{`${minRead(content)} min read`}</p>}
                                     </div>

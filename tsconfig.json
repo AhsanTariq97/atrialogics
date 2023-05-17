@@ -19,6 +19,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/index.jsx", "src/pages/blogs.tsx", "src/components/BlogPage.jsx", "src/pages/blogs/[slug].js", "src/components/BlogHomePage2.jsx", "src/components/BlogHomePage.tsx", "src/components/ProjectHomePage.tsx", "src/pages/portfolio.jsx", "src/utils/mdx.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/index.jsx", "src/pages/blog.tsx", "src/components/BlogPage.jsx", "src/pages/blog/[slug].js", "src/components/BlogHomePage2.jsx", "src/components/BlogHomePage.tsx", "src/components/ProjectHomePage.tsx", "src/pages/portfolio.jsx", "src/utils/mdx.js"],
   "exclude": ["node_modules"]
 }

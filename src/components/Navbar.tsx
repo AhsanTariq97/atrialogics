@@ -48,10 +48,10 @@ const Navbar: React.FC = () => {
                         <li className='py-2 tracking-wide '><Link href="" onClick={(event) => {event.preventDefault();smoothScrollTo('about');}}><p className='text-base font-normal tracking-wide'>About</p></Link></li>
                         <li className='py-2 tracking-wide '><Link href="" onClick={(event) => {event.preventDefault();smoothScrollTo('team');}}><p className='text-base font-normal tracking-wide'>Team</p></Link></li>
                         <li className='py-2 tracking-wide '><Link href="" onClick={(event) => {event.preventDefault();smoothScrollTo('contact');}}><p className='text-base font-normal tracking-wide'>Contact</p></Link></li>
+                        <li className='py-2 tracking-wide '><Link href="/blog"><p className='text-base font-normal tracking-wide'>Blog</p></Link></li>
                     </ul>
                     <div className='hidden lg+:flex justify-between items-center space-x-2'>
                         <Link href="/portfolio"><Button type='text' text='Portfolio' px='8' /></Link>
-                        <Link href="/blogs"><Button type='text' text='Blogs' px='8' /></Link>
                     </div>
                     <div className='flex lg+:hidden justify-end items-center'>
                         <Image src={toggle ? '/assets/icons/close.svg' : '/assets/icons/menu.svg'} className='cursor-pointer brightness-0' width={25} height={25} alt='menu toggle' onClick={() => setToggle(prev => !prev)} />
@@ -62,9 +62,9 @@ const Navbar: React.FC = () => {
                                 <li className='px-4 py-2 tracking-wide'><Link href="" onClick={(event) => {event.preventDefault();smoothScrollTo('about');setToggle(prev => !prev);}}><p className='text-base font-normal tracking-wide'>About</p></Link></li>
                                 <li className='px-4 py-2 tracking-wide'><Link href="" onClick={(event) => {event.preventDefault();smoothScrollTo('team');setToggle(prev => !prev);}}><p className='text-base font-normal tracking-wide'>Team</p></Link></li>
                                 <li className='px-4 py-2 tracking-wide'><Link href="" onClick={(event) => {event.preventDefault();smoothScrollTo('contact');setToggle(prev => !prev);}}><p className='text-base font-normal tracking-wide'>Contact</p></Link></li>
+                                <li className='px-4 py-2 tracking-wide'><Link href="/blog" ><p className='text-base font-normal tracking-wide'>Blog</p></Link></li>
                                 <div className='flex flex-col justify-between space-y-4'>
                                     <Link href="/portfolio"><Button type='text' text='Portfolio' /></Link>
-                                    <Link href="/blogs"><Button type='text' text='Blogs' /></Link>
                                 </div>
                                 <Image className='absolute cursor-pointer top-3 right-8 brightness-0' src={'/assets/icons/close.svg'} width={25} height={25} alt='close toggle' onClick={() => setToggle(prev => !prev)} />
                             </ul>

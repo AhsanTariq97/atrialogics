@@ -114,7 +114,7 @@ export default function BlogHomePage(): JSX.Element {
   
   return (
       <div className='flex flex-col justify-between items-center space-y-8 py-8 w-[90%] mx-auto'>
-      <h2 data-aos='fade-down' className='text-2xl font-bold md:text-3xl py-4 [text-shadow:_0_10px_20px_rgb(0_0_0_/_20%)]'>Blogs</h2>
+      <h2 data-aos='fade-down' className='text-2xl font-bold md:text-3xl py-4 [text-shadow:_0_10px_20px_rgb(0_0_0_/_20%)]'>Blog</h2>
           <ul className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'>
               {posts.map((post) => {
                   const { slug, title, excerpt, content, featuredImage, author } = post;
@@ -126,9 +126,9 @@ export default function BlogHomePage(): JSX.Element {
                   }
                   return (
                       <li data-aos='fade-up' key={slug} className='flex flex-col items-start justify-start w-full max-w-xl' >
-                        <Link href={`/blogs/${slug}`} onClick={handleClick} >{featuredImage ? <Image src={featuredImage.node.sourceUrl} className='rounded-3xl md:max-h-[250px] md:min-h-[250px]' alt='' width={600} height={200} /> : <Image src='/assets/welcome.jpg' className='rounded-3xl md:max-h-[250px] md:min-h-[250px]' alt='' width={600} height={200} /> }</Link>
+                        <Link href={`/blog/${slug}`} onClick={handleClick} >{featuredImage ? <Image src={featuredImage.node.sourceUrl} className='rounded-3xl md:max-h-[250px] md:min-h-[250px]' alt='' width={600} height={200} /> : <Image src='/assets/welcome.jpg' className='rounded-3xl md:max-h-[250px] md:min-h-[250px]' alt='' width={600} height={200} /> }</Link>
                         <div className='flex flex-col items-start justify-between py-4 space-y-4'>
-                            <Link href={`/blogs/${slug}`} onClick={handleClick} ><h2 className='text-lg font-semibold text-[#1F3A6E] md:text-lg'>{title}</h2></Link>
+                            <Link href={`/blog/${slug}`} onClick={handleClick} ><h2 className='text-lg font-semibold text-[#1F3A6E] md:text-lg'>{title}</h2></Link>
                             <div dangerouslySetInnerHTML={{__html: newExcerpt}} className='text-[#6E7477] text-sm' />
                             <div className='flex items-center justify-start space-x-16'>
                                 <h3 className='text-sm font-medium'>{author.node.name}</h3>
@@ -214,7 +214,7 @@ export default function BlogHomePage(): JSX.Element {
   )
 }
 
-// No of blogs per page
+// No of blog per page
 const BATCH_SIZE = 6
 
 // For range in pagination when in between 1st and last, enter forward and backward value here

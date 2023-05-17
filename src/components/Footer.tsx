@@ -42,24 +42,24 @@ const Footer: React.FC = () => {
             <button onClick={scrollToTop}><FaArrowUp size={25} className='md:animate-bounce' /></button>
         </div>
         <div className='flex flex-col md:flex-row justify-between items-center px-8 space-y-12 mx-auto pb-16 sm:pb-32 md:pt-12 md:border-t-2 border-[#E4E6E7] md:space-y-0 md:max-w-4xl lg:max-w-6xl'>
-            <div data-aos='fade-up' className='flex flex-col justify-between items-center lg:items-start w-max space-y-4 text-center'>
-                <h3 className='text-base font-semibold tracking-wide w-full text-white'>Navigate Links</h3>
-                <Link href="/"><p className='text-base tracking-wide w-full'>Home</p></Link>
-                <Link href="/blogs"><p className='text-base tracking-wide w-full'>Blogs</p></Link>
-                <Link href="" onClick={(event) => {event.preventDefault();smoothScrollTo('services');}}><p className='text-base tracking-wide w-full'>Services</p></Link>
-                <Link href="" onClick={(event) => {event.preventDefault();smoothScrollTo('team');}}><p className='text-base tracking-wide w-full'>Team</p></Link>
+            <div data-aos='fade-up' className='flex flex-col items-center justify-between space-y-4 text-center lg:items-start w-max'>
+                <h3 className='w-full text-base font-semibold tracking-wide text-white'>Navigate Links</h3>
+                <Link href="/"><p className='w-full text-base tracking-wide'>Home</p></Link>
+                <Link href="/blog"><p className='w-full text-base tracking-wide'>Blog</p></Link>
+                <Link href="" onClick={(event) => {event.preventDefault();smoothScrollTo('services');}}><p className='w-full text-base tracking-wide'>Services</p></Link>
+                <Link href="" onClick={(event) => {event.preventDefault();smoothScrollTo('team');}}><p className='w-full text-base tracking-wide'>Team</p></Link>
             </div>
-            <div data-aos='fade-up' className='flex flex-col justify-between items-center space-y-4'>
+            <div data-aos='fade-up' className='flex flex-col items-center justify-between space-y-4'>
                 <h2 className='text-lg font-medium tracking-wide text-[#E5E7EB]'>FOLLOW US</h2>
-                <div className='flex justify-between items-center space-x-4 md:space-x-2'>
+                <div className='flex items-center justify-between space-x-4 md:space-x-2'>
                     <Link href='https://www.facebook.com/atrialogics' target='_blank'><div className='rounded-full text-[#252728] bg-[#E4E6E7] p-2'><FaFacebookF size={25} /></div></Link>
                     <Link href='https://www.instagram.com/atrialogics' target='_blank'><div className='rounded-full text-[#252728] bg-[#E4E6E7] p-2'><AiFillInstagram size={25} /></div></Link>
                     <Link href='https://atrialogics.io/#' target='_blank'><div className='rounded-full text-[#252728] bg-[#E4E6E7] p-2'><FaTwitter size={25} /></div></Link>
                     <Link href='https://atrialogics.io/#' target='_blank'><div className='rounded-full text-[#252728] bg-[#E4E6E7] p-2'><FaLinkedinIn size={25} /></div></Link>
                 </div>
             </div>
-            <div data-aos='fade-up' className='flex flex-col justify-between items-center lg:items-start space-y-4'>
-                <h3 className='text-white tex-2xl font-bold tracking-wide'>Contact Us</h3>
+            <div data-aos='fade-up' className='flex flex-col items-center justify-between space-y-4 lg:items-start'>
+                <h3 className='font-bold tracking-wide text-white tex-2xl'>Contact Us</h3>
                 <ContactDetails textColor='text-[#BDC0C2]'iconColor='#BDC0C2' />
             </div>
         </div>

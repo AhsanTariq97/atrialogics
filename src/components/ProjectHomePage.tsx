@@ -161,7 +161,7 @@ const ProjectHomePage = ({ posts }: Props): JSX.Element => {
 
 export default ProjectHomePage
 
-// No of blogs per page
+// No of blog per page
 const BATCH_SIZE = 6
 
 let RANGE_FORWARD_BACKWARD: number;

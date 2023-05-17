@@ -64,7 +64,7 @@ export default function Blogs({ post }: Props): JSX.Element {
                             {post.content && <p>{`${minRead(processedContent)} min read`}</p>}
                         </div>
                         <BlogPage headings={headings} processedContent={processedContent} />
-                        <Link href='/blogs'>&larr; Back to Blog</Link>
+                        <Link href='/blog'>&larr; Back to Blog</Link>
                     </div>
                 </main>
                 <footer className='w-full'>
